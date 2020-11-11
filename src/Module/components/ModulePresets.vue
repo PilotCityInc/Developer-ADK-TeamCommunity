@@ -2,56 +2,14 @@
   <v-container class="module-outcomes">
     <div class="module-outcomes__container">
       <!-- <v-divider class="presets__divider"></v-divider> -->
-      <div class="presets__section-title">Activity Presets</div>
-      <div class="presets__nopresets">No tweaking necessary</div>
-      <v-divider class="presets__divider"></v-divider>
-      <div class="presets__section-title">Instruction Presets</div>
-      <Instruct v-model="setupInstructions" />
-      <v-divider class="presets__divider"></v-divider>
-      <div class="presets__section-title">Creator Presets</div>
-      <v-select :items="group" label="What activity group does this belong to?" outlined></v-select>
-      <v-select
-        :items="required"
-        label="Is this activity required for participants to complete?"
-        outlined
-      ></v-select>
-      <v-select
-        :items="lockOrder"
-        label="Lock activity group and placement order?"
-        outlined
-      ></v-select>
-      <v-select :items="deliverable" label="Is this a deliverable?" outlined></v-select>
-      <v-select
-        :items="accessibility"
-        label="Make this activity accessible to participants anytime?"
-        outlined
-      ></v-select>
-      <v-select
-        :items="endEarly"
-        label="Allow participants to end program early after completion of this activity?"
-        outlined
-      ></v-select>
+      <div class="presets__section-title">Maximum team members</div>
       <!-- POST-ACTIVITY REFLECTION -->
-      <v-text-field
-        label="Post-Activity Reflection"
-        placeholder="Now that you know the scope of the project, provide a summary of your interpretation."
-        outlined
-        hide-details
-      ></v-text-field>
+      <v-text-field placeholder="Max number of team members" outlined hide-details></v-text-field>
       <div class="presets__reflection">
         <v-btn class="presets__reflection-buttons" small depressed outlined>Save</v-btn>
-        <v-btn class="presets__reflection-buttons" small depressed outlined>Preview</v-btn>
       </div>
       <v-divider class="presets__divider"></v-divider>
       <!-- If activity is required, show button below, make tooltip show up while disabled, right now tooltip doesn't show up -->
-      <div>
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn color="red" disabled v-bind="attrs" v-on="on">Delete Activity</v-btn>
-          </template>
-          <span>Required activities cannot be deleted</span>
-        </v-tooltip>
-      </div>
       <!-- Delete break when the two delete buttons above and below have been integrated as one solution -->
       <br />
       <!-- If activity is optional, show button below -->
@@ -67,9 +25,6 @@ import Instruct from './ModuleInstruct.vue';
 
 export default {
   name: 'ModulePresets',
-  components: {
-    Instruct
-  },
   apollo: {},
   setup() {
     const presets = reactive({
@@ -108,10 +63,12 @@ export default {
   &__reflection-buttons {
     margin-right: 10px;
     margin-top: 10px;
+    align-content: center;
   }
 
   &__reflection {
     margin-left: auto;
+    align-content: center;
   }
 
   &__divider {
@@ -124,7 +81,7 @@ export default {
     font-size: 25px;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   &__nopresets {
