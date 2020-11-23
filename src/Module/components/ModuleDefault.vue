@@ -34,337 +34,173 @@
       </v-expansion-panels>
     </div>
 
-    <!--buttons for the  team -->
-    <div class="module-default__upper-body">
-      <div class="module-default__team">
-        <v-btn :ripple="false" depressed class="module-default__team-buttons">Team 1</v-btn>
-        <v-btn :ripple="false" depressed class="module-default__team-buttons">Team 2</v-btn>
-        <v-btn :ripple="false" depressed class="module-default__team-buttons">Team 3</v-btn>
-      </div>
-    </div>
-
-    <div class="module-default__log-text">
-      <v-text-field
-        class="module-default__text-field"
-        placeholder="Add More team members"
-        outlined
-      ></v-text-field>
-      <v-btn class="module-default__log-btn" depressed :ripple="false">ADD</v-btn>
-    </div>
-
-    <div class="module-default__mange">
-      <div class="module-default__manage-title text-h6 font-weight-black">Manage</div>
-      <ManageTable class="module-default__table-view"></ManageTable>
-    </div>
-
-    <div class="module-default__new">
-      <div class="module-default__manage-new text-h6 font-weight-black">New</div>
-      <NewTable class="module-default__table-view"></NewTable>
-    </div>
-
-    <!-- <v-progress-linear
-      class="module-default__collapse-d ivider"
+    <v-progress-linear
+      class="module-default__collapse-divider"
       color="#dedede"
       height="2"
-      value="75"
-      buffer-value="95"
+      value="100"
+      buffer-value="100"
       stream
-    /> -->
-
-    <div class="module-default__scope">
-      <v-btn dense color="blue" small rounded outlined depressed
-        >Kaiser Permanente National Innovation
-      </v-btn>
-      <br />
-      <br />
-      Use human-centered design to develop health-tech solutions to fight childhood obesity, enable
-      telemedicine, and create a smart and health community.
-    </div>
-    <br />
-    <br />
-    <div class="module-default__youtube"></div>
-    <br />
-    <br />
-
-    <div class="module-default__faq">
-      <v-btn dense color="blue" large rounded outlined depressed>KEY QUESTIONS & ANSWERS</v-btn>
-      <br />
-      <br />
-
-      <template>
-        <v-timeline>
-          <v-timeline-item color="green" fill-dot left large>
-            <template v-slot:icon>
-              <v-avatar>
-                <img
-                  src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                />
-              </v-avatar>
-            </template>
-            <v-card outlined color="grey lighten-3" class="elevation-0">
-              <v-card-text
-                ><div class="module-default__faq-answer-dark">
-                  Hi, my name is
-                  <span class="module-default__faq-answer-dark-highlight">Brittany Domnie</span>
-                  with
-                  <span class="module-default__faq-answer-dark-highlight"
-                    >Kaiser Permanente National Innovation</span
-                  >. Below are my answers to some key questions.
-                </div></v-card-text
+    />
+    <div class="module-edit__container">
+      <div class="module-default__manage-title text-h5 font-weight-black">Join</div>
+      <!--buttons for the  team -->
+      <div class="module-default__upper-body">
+        <div class="module-default__team">
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-btn
+                :ripple="false"
+                rounded
+                depressed
+                small
+                dark
+                class="module-default__team-buttons mr-3"
+                >Team Yeezy</v-btn
               >
-            </v-card>
-          </v-timeline-item>
-
-          <v-timeline-item color="green" fill-dot right large>
-            <template v-slot:icon>
-              <v-avatar>
-                <img
-                  src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                />
-              </v-avatar>
-            </template>
-            <template v-slot:opposite>
-              <span class="module-default__faq-question">What is the urgency of this problem?</span>
-            </template>
-            <v-card color="green" dark outlined class="elevation-0">
-              <v-card-text
-                ><div class="module-default__faq-answer">
-                  The pandemic has exacerbated the healthcare system as it goes into overdrive.
-                  People are uncertain and concerned about their current health status.
-                </div></v-card-text
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+          </div>
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-btn
+                :ripple="false"
+                rounded
+                depressed
+                small
+                dark
+                class="module-default__team-buttons mr-3"
+                >Team Easy</v-btn
               >
-            </v-card>
-          </v-timeline-item>
-
-          <v-timeline-item right color="red" fill-dot large>
-            <template v-slot:icon>
-              <v-avatar>
-                <img
-                  src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                />
-              </v-avatar>
-            </template>
-            <template v-slot:opposite>
-              <span class="module-default__faq-question"
-                >Who could be possible users of the solution created?</span
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+          </div>
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-btn
+                :ripple="false"
+                rounded
+                depressed
+                small
+                dark
+                class="module-default__team-buttons mr-3"
+                >Team Peezy</v-btn
               >
-            </template>
-            <v-card color="red" dark outlined class="elevation-0">
-              <v-card-text class="module-default__faq-answer"
-                ><div class="module-default__faq-answer">
-                  Frontline workers in healthcare, doctors, and researchers would be the optimal
-                  users of the solution for you bright students to embark on developing.
-                </div></v-card-text
-              >
-            </v-card>
-          </v-timeline-item>
-
-          <v-timeline-item right color="pink" fill-dot large>
-            <template v-slot:icon>
-              <v-avatar>
-                <img
-                  src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                />
-              </v-avatar>
-            </template>
-            <template v-slot:opposite>
-              <span class="module-default__faq-question">What are the opportunities?</span>
-            </template>
-            <v-card color="pink" dark outlined class="elevation-0">
-              <v-card-text class="module-default__faq-answer"
-                ><div class="module-default__faq-answer">
-                  We are excited about the idea of bridging the digital divide, enabling
-                  telemedicine practices which would greatly enhance the accessibility low-income
-                  families have with our healthcare system with the factor of transport eliminated.
-                </div></v-card-text
-              >
-            </v-card>
-          </v-timeline-item>
-
-          <v-timeline-item right color="purple" fill-dot large>
-            <template v-slot:icon>
-              <v-avatar>
-                <img
-                  src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                />
-              </v-avatar>
-            </template>
-            <template v-slot:opposite>
-              <span class="module-default__faq-question">What are the known challenges?</span>
-            </template>
-            <v-card color="purple" dark outlined class="elevation-0">
-              <v-card-text class="module-default__faq-answer"
-                ><div class="module-default__faq-answer">
-                  Access to technology seems to be the issue as well as data and privacy challenges
-                  between consumer and provider of healthcare.
-                </div></v-card-text
-              >
-            </v-card>
-          </v-timeline-item>
-
-          <v-timeline-item right color="green" fill-dot large>
-            <template v-slot:icon>
-              <v-avatar>
-                <img
-                  src="https://static.wixstatic.com/media/b0cb5d_7a6494c66dfb4bb6b9e2d6c71c214eca~mv2.jpg/v1/fill/w_432,h_434,al_c,lg_1,q_80/Brit_Pro.webp"
-                />
-              </v-avatar>
-            </template>
-            <template v-slot:opposite>
-              <span class="module-default__faq-question"
-                >Why are you requesting projects from students?</span
-              >
-            </template>
-            <v-card color="green" dark outlined class="elevation-0">
-              <v-card-text class="module-default__faq-answer"
-                ><div class="module-default__faq-answer">
-                  We have a grant that asks for civic engagement with students to co-generate new
-                  ideas for our proposed solutions. We also are interested in building a pipeline of
-                  opportunities to work in our local industry consortium we lead.
-                </div></v-card-text
-              >
-            </v-card>
-          </v-timeline-item>
-        </v-timeline>
-      </template>
-    </div>
-    <br />
-    <br />
-    <template>
-      <v-card outlined elevation="0" max-width="85%" class="mx-auto">
-        <v-toolbar elevation="0" dark color="blue">
-          <v-icon class="mr-4" large>mdi-telegram</v-icon>
-          <v-toolbar-title class="module-default__specs-title"
-            >Project Specifications</v-toolbar-title
-          >
-        </v-toolbar>
-        <v-subheader>Outcomes</v-subheader>
-        <v-list two-line subheader>
-          <v-list-item>
-            <v-chip-group column>
-              <v-chip dark>Build portfolio project</v-chip>
-              <v-chip dark>Qualify for internship to execute on project</v-chip></v-chip-group
-            >
-          </v-list-item>
-        </v-list>
-        <!-- <v-divider></v-divider> -->
-        <v-subheader>Deliverables</v-subheader>
-        <v-list two-line subheader>
-          <v-list-item>
-            <v-chip-group column>
-              <v-chip dark>Business Model Canvas</v-chip>
-              <v-chip dark>One Sentence Pitch</v-chip>
-              <v-chip dark>Elevator Pitch</v-chip>
-              <v-chip dark>Design & Prototype Log</v-chip>
-              <v-chip dark>Prototype Demo</v-chip>
-              <v-chip dark>Presentation Deck</v-chip>
-            </v-chip-group>
-          </v-list-item>
-        </v-list>
-        <!-- <v-divider></v-divider> -->
-        <v-subheader>Requirements</v-subheader>
-        <v-list two-line subheader>
-          <v-list-item>
-            <template v-slot:default="{ active }">
-              <v-list-item-action>
-                <v-checkbox :input-value="active" color="primary"></v-checkbox>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>Use human-centered design</v-list-item-title>
-              </v-list-item-content>
-            </template>
-          </v-list-item>
-          <v-list-item>
-            <template v-slot:default="{ active }">
-              <v-list-item-action>
-                <v-checkbox :input-value="active" color="primary"></v-checkbox>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>Solve childhood obesity</v-list-item-title>
-              </v-list-item-content>
-            </template>
-          </v-list-item>
-          <v-list-item>
-            <template v-slot:default="{ active }">
-              <v-list-item-action>
-                <v-checkbox :input-value="active" color="primary"></v-checkbox>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>Use technology</v-list-item-title>
-              </v-list-item-content>
-            </template>
-          </v-list-item>
-        </v-list>
-        <!-- <v-divider></v-divider> -->
-        <v-subheader>Resources</v-subheader>
-        <v-list two-line subheader>
-          <v-list-item>
-            <v-btn-group>
-              <v-btn class="ma-1" depressed small outlined>Get Started Folder</v-btn>
-              <v-btn class="ma-1" depressed small outlined>Website</v-btn>
-              <v-btn class="ma-1" depressed small outlined>Instagram</v-btn>
-              <v-btn class="ma-1" depressed small outlined>LinkedIn</v-btn>
-              <v-btn class="ma-1" depressed small outlined>Facebook</v-btn>
-              <v-btn class="ma-1" depressed small outlined>YouTube</v-btn>
-              <!-- <v-btn class="ma-1" depressed small outlined>Articles</v-btn>
-                <v-btn class="ma-1" depressed small outlined>Product Specifications</v-btn>
-                <v-btn class="ma-1" depressed small outlined>Reports</v-btn> -->
-            </v-btn-group>
-          </v-list-item>
-        </v-list>
-        <v-divider></v-divider>
-        <v-subheader>About</v-subheader>
-        <v-card-text
-          >Kaiser Permanente (/ˈkaɪzər pɜːrməˈnɛnteɪ/; KP) is an American integrated managed care
-          consortium, based in Oakland, California, United States, founded in 1945 by industrialist
-          Henry J. Kaiser and physician Sidney Garfield. Kaiser Permanente is made up of three
-          distinct but interdependent groups of entities: the Kaiser Foundation Health Plan, Inc.
-          (KFHP) and its regional operating subsidiaries; Kaiser Foundation Hospitals; and the
-          regional Permanente Medical Groups. As of 2017, Kaiser Permanente operates in eight states
-          (Hawaii, Washington, Oregon, California, Colorado, Maryland, Virginia, Georgia) and the
-          District of Columbia, and is the largest managed care organization in the United
-          States.</v-card-text
-        >
-      </v-card>
-    </template>
-    <br />
-    <br />
-    <!-- <div class="module-default__about">
-        <v-btn dense color="blue" large rounded outlined depressed>About</v-btn>
-        <br />
-        <br />
-        Kaiser Permanente (/ˈkaɪzər pɜːrməˈnɛnteɪ/; KP) is an American integrated managed care
-        consortium, based in Oakland, California, United States, founded in 1945 by industrialist
-        Henry J. Kaiser and physician Sidney Garfield. Kaiser Permanente is made up of three
-        distinct but interdependent groups of entities: the Kaiser Foundation Health Plan, Inc.
-        (KFHP) and its regional operating subsidiaries; Kaiser Foundation Hospitals; and the
-        regional Permanente Medical Groups. As of 2017, Kaiser Permanente operates in eight states
-        (Hawaii, Washington, Oregon, California, Colorado, Maryland, Virginia, Georgia) and the
-        District of Columbia, and is the largest managed care organization in the United States.
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-2 mr-2" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+          </div>
+        </div>
       </div>
-      <br />
-      <br /> -->
-    <!-- <v-divider></v-divider> -->
-    <br />
-    <br />
-    <div class="module-default__scope">
-      <v-btn x-large depressed outlined>Finish Activity</v-btn>
+      <div class="module-default__manage-title text-h5 font-weight-black mt-6">Create</div>
+      <div class="module-default__log-text mb-5 mt-5">
+        <v-text-field
+          class="module-default__text-field"
+          placeholder="Enter new team name"
+          outlined
+        ></v-text-field>
+        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
+          >Create Team</v-btn
+        >
+      </div>
+
+      <div class="module-default__manage">
+        <div class="module-default__manage-title text-h5 font-weight-black mb-3">Manage</div>
+        <ManageTable class="module-default__table-view"></ManageTable>
+      </div>
+
+      <!-- <div class="module-default__new">
+        <div class="module-default__manage-new text-h5 font-weight-black">New</div>
+        <NewTable class="module-default__table-view"></NewTable>
+      </div> -->
+      <div class="module-default__manage-title text-h5 font-weight-black mb-3">Rename</div>
+      <div class="module-default__log-text mb-5 mt-5">
+        <v-text-field
+          class="module-default__text-field"
+          placeholder="Rename team name"
+          outlined
+        ></v-text-field>
+        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
+          >Rename Team</v-btn
+        >
+      </div>
+
+      <v-btn large color="red" dark depressed>Leave Team</v-btn>
+
+      <!-- ENTER CONTENT HERE -->
+      <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->
+      <!-- <div class="module-default__none">Design your activity here</div> -->
     </div>
   </v-container>
 </template>
-
 <script lang="ts">
 import { ref } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
 import ManageTable from './ManageTable.vue';
-import NewTable from './NewTable.vue';
+// import NewTable from './NewTable.vue';
 
 export default {
   name: 'ModuleDefault',
   components: {
     Instruct,
-    ManageTable,
-    NewTable
+    ManageTable
+    // NewTable
   },
   apollo: {},
   data() {
@@ -392,13 +228,23 @@ export default {
     flex-direction: column;
     align-items: start;
     width: 100%;
-    margin-left: 5.4%;
+    // margin-left: 5.4%;
     &-buttons {
       margin-bottom: 10px;
       &.v-btn:not(.v-btn--round).v-size--default {
         width: 250px;
       }
     }
+  }
+
+  &__team-avatar {
+  }
+  &__team-row {
+    flex-direction: row;
+    display: flex;
+    // justify-content: center !important;
+    // align-items: center !important;
+    // align-content: center !important;
   }
   &__log-text {
     display: flex;
@@ -417,9 +263,20 @@ export default {
   }
   &__table-view {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
+    // padding-left: 10px;
+    // padding-right: 10px;
     margin-bottom: 20px;
+  }
+  &__none {
+    border-radius: 5px;
+    // border: 1px solid #dedede;
+    height: 100px;
+    text-align: center;
+    background-color: #dedede;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 18px;
+    padding-top: 35px;
   }
 
   &__collapse-divider {
