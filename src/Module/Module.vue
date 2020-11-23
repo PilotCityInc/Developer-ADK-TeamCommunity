@@ -116,14 +116,8 @@ export default {
     'module-preview': Module.Default
   },
   setup() {
-<<<<<<< HEAD
-    const moduleName = ref('Team');
-    console.log(this); // maybe we can use exported `name:` property
-    const page: Page = reactive({
-=======
     const moduleName = ref('Request for Projects');
     const page = reactive({
->>>>>>> d91e47bd8cafcf910e52e50b904b3af042d7e774
       subpages: ['Setup', 'Presets', 'Monitor'],
       currentPage: 'Setup'
     });
@@ -136,17 +130,10 @@ export default {
         ['#eda1bf', '#fec34b', '#bdbdbd'],
         ['#ae90b0', '#f79961', '#000000']
       ],
-<<<<<<< HEAD
-      selectedColor: '#f79961',
-      getColor: computed(() => {
-        return color.selectedColor.substring(0, 7);
-      })
-=======
       selectedColor: '#3c9dcd'
     });
     const getColor = computed(() => {
       return color.selectedColor.substring(0, 7);
->>>>>>> d91e47bd8cafcf910e52e50b904b3af042d7e774
     });
     const config = ref({
       description: '',

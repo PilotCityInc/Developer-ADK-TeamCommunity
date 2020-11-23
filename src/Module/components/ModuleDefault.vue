@@ -33,18 +33,43 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
-<<<<<<< HEAD
-    <div class="module-default__container"></div>
-=======
 
-    <v-progress-linear
-      class="module-default__collapse-divider"
+    <!--buttons for the  team -->
+    <div class="module-default__upper-body">
+      <div class="module-default__team">
+        <v-btn :ripple="false" depressed class="module-default__team-buttons">Team 1</v-btn>
+        <v-btn :ripple="false" depressed class="module-default__team-buttons">Team 2</v-btn>
+        <v-btn :ripple="false" depressed class="module-default__team-buttons">Team 3</v-btn>
+      </div>
+    </div>
+
+    <div class="module-default__log-text">
+      <v-text-field
+        class="module-default__text-field"
+        placeholder="Add More team members"
+        outlined
+      ></v-text-field>
+      <v-btn class="module-default__log-btn" depressed :ripple="false">ADD</v-btn>
+    </div>
+
+    <div class="module-default__mange">
+      <div class="module-default__manage-title text-h6 font-weight-black">Manage</div>
+      <ManageTable class="module-default__table-view"></ManageTable>
+    </div>
+
+    <div class="module-default__new">
+      <div class="module-default__manage-new text-h6 font-weight-black">New</div>
+      <NewTable class="module-default__table-view"></NewTable>
+    </div>
+
+    <!-- <v-progress-linear
+      class="module-default__collapse-d ivider"
       color="#dedede"
       height="2"
       value="75"
       buffer-value="95"
       stream
-    />
+    /> -->
 
     <div class="module-default__scope">
       <v-btn dense color="blue" small rounded outlined depressed
@@ -325,18 +350,21 @@
     <div class="module-default__scope">
       <v-btn x-large depressed outlined>Finish Activity</v-btn>
     </div>
->>>>>>> d91e47bd8cafcf910e52e50b904b3af042d7e774
   </v-container>
 </template>
 
 <script lang="ts">
 import { ref } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
+import ManageTable from './ManageTable.vue';
+import NewTable from './NewTable.vue';
 
 export default {
   name: 'ModuleDefault',
   components: {
-    Instruct
+    Instruct,
+    ManageTable,
+    NewTable
   },
   apollo: {},
   data() {
@@ -355,6 +383,45 @@ export default {
 
 <style lang="scss">
 .module-default {
+  &__upper-body {
+    display: flex;
+    width: 100%;
+  }
+  &__team {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    margin-left: 5.4%;
+    &-buttons {
+      margin-bottom: 10px;
+      &.v-btn:not(.v-btn--round).v-size--default {
+        width: 250px;
+      }
+    }
+  }
+  &__log-text {
+    display: flex;
+  }
+  &__text-field {
+    &.v-text-field {
+      width: 400px;
+    }
+  }
+  &__log-btn {
+    &.v-btn:not(.v-btn--round).v-size--default {
+      min-height: 57px;
+    }
+    margin-left: 20px;
+    height: 100%;
+  }
+  &__table-view {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+  }
+
   &__collapse-divider {
     margin-top: 15px;
     margin-bottom: 75px;
