@@ -13,44 +13,50 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref, toRefs } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
+import { items } from './const';
 // import gql from 'graphql-tag';
 
-export default {
+export default defineComponent({
   name: 'ModulePresets',
-  apollo: {},
-  setup() {
-    const presets = reactive({
-      group: ['Setup', 'Project', 'Screening', 'Internship'],
-      required: ['Creator requires this activity', 'Yes', 'No'],
-      lockOrder: ['Creator locked activity group and placement order', 'Yes', 'No'],
-      deliverable: ['Yes', 'No'],
-      notifications: ['Creator turned on by default', 'Turn on', 'Turn off'],
-      accessibility: [
-        'Creator has turned off accessibility anytime',
-        'Creator has turned on accessibility anytime',
-        'Yes',
-        'No'
-      ],
-      items: ['1', '2', '3', '4', '5', '6', '7'],
-      endEarly: [
-        'Creator has not allowed participants to end early after this activity',
-        'Creator has allow end early option only at preset order placement',
-        'Yes',
-        'No'
-      ]
-    });
-    const setupInstructions = ref({
-      description: '',
-      instructions: ['', '', '']
-    });
+  data() {
     return {
-      ...toRefs(presets),
-      setupInstructions
+      items
     };
   }
-};
+
+  // setup() {
+  //   const presets = reactive({
+  //     group: ['Setup', 'Project', 'Screening', 'Internship'],
+  //     required: ['Creator requires this activity', 'Yes', 'No'],
+  //     lockOrder: ['Creator locked activity group and placement order', 'Yes', 'No'],
+  //     deliverable: ['Yes', 'No'],
+  //     notifications: ['Creator turned on by default', 'Turn on', 'Turn off'],
+  //     accessibility: [
+  //       'Creator has turned off accessibility anytime',
+  //       'Creator has turned on accessibility anytime',
+  //       'Yes',
+  //       'No'
+  //     ],
+  //     items: ['1', '2', '3', '4', '5', '6', '7'],
+  //     endEarly: [
+  //       'Creator has not allowed participants to end early after this activity',
+  //       'Creator has allow end early option only at preset order placement',
+  //       'Yes',
+  //       'No'
+  //     ]
+  //   });
+  //   const setupInstructions = ref({
+  //     description: '',
+  //     instructions: ['', '', '']
+  //   });
+  //   return {
+  //     ...toRefs(presets),
+  //     setupInstructions
+  //   };
+  // }
+});
 </script>
 
 <style lang="scss">

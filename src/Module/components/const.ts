@@ -28,3 +28,5 @@ export const newitems = [
   { time: '2/2/2018 at 6pm', log: 'Created the file', proof: '3kek322.png' },
   { time: '3/22/2018 at 7pm', log: 'Developed the metal arm', proof: '323_IMG.png' }
 ];
+
+export const items = ['1', '2', '3', '4', '5', '6', '7'];
