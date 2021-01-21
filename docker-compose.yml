@@ -3,7 +3,7 @@ networks:
   pdk:
     driver: bridge
 services:
-  microapp: #in container-based development
+  teamcommunity: #in container-based development
     image: pilotcity/boiler
     container_name: teamcommunity
     environment:
