@@ -802,55 +802,8 @@
         <NewTable class="module-default__table-view"></NewTable>
       </div> -->
       <div class="headline font-weight-black mb-3 mt-6">Settings</div>
-      <div class="module-default__log-text mb-5 mt-5">
-        <v-text-field
-          rounded
-          class="module-default__text-field"
-          label="Rename team name"
-          placeholder="(add current team name here)"
-          outlined
-        ></v-text-field>
 
-        <v-dialog v-model="renameTeamDialog" persistent max-width="500px">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              rounded
-              v-bind="attrs"
-              class="module-default__log-btn"
-              depressed
-              outlined
-              :ripple="false"
-              v-on="on"
-              >Rename Team</v-btn
-            >
-          </template>
-
-          <v-card>
-            <v-card-title class="d-flex flex-column">
-              <div class="overline font-weight-bold">Are you sure you want to rename the team?</div>
-            </v-card-title>
-
-            <v-divider></v-divider>
-
-            <v-container class="d-flex flex-column justify-center">
-              <div class="d-flex flex-row justify-center mt-4 mb-6">
-                <v-btn
-                  class="ma-2"
-                  outlined
-                  x-large
-                  rounded
-                  depressed
-                  @click="renameTeamDialog = false"
-                  >Cancel</v-btn
-                >
-                <v-btn class="ma-2" color="green" x-large dark rounded depressed>Confirm</v-btn>
-              </div>
-            </v-container>
-          </v-card>
-        </v-dialog>
-      </div>
-
-      <div class="module-default__log-text">
+      <div class="module-default__log-text mt-5 mb-5">
         <v-text-field
           v-model="password"
           rounded
@@ -894,6 +847,54 @@
                   rounded
                   depressed
                   @click="changePasswordDialog = false"
+                  >Cancel</v-btn
+                >
+                <v-btn class="ma-2" color="green" x-large dark rounded depressed>Confirm</v-btn>
+              </div>
+            </v-container>
+          </v-card>
+        </v-dialog>
+      </div>
+
+      <div class="module-default__log-text">
+        <v-text-field
+          rounded
+          class="module-default__text-field"
+          label="Rename team name"
+          placeholder="(add current team name here)"
+          outlined
+        ></v-text-field>
+
+        <v-dialog v-model="renameTeamDialog" persistent max-width="500px">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              rounded
+              v-bind="attrs"
+              class="module-default__log-btn"
+              depressed
+              outlined
+              :ripple="false"
+              v-on="on"
+              >Rename Team</v-btn
+            >
+          </template>
+
+          <v-card>
+            <v-card-title class="d-flex flex-column">
+              <div class="overline font-weight-bold">Are you sure you want to rename the team?</div>
+            </v-card-title>
+
+            <v-divider></v-divider>
+
+            <v-container class="d-flex flex-column justify-center">
+              <div class="d-flex flex-row justify-center mt-4 mb-6">
+                <v-btn
+                  class="ma-2"
+                  outlined
+                  x-large
+                  rounded
+                  depressed
+                  @click="renameTeamDialog = false"
                   >Cancel</v-btn
                 >
                 <v-btn class="ma-2" color="green" x-large dark rounded depressed>Confirm</v-btn>
