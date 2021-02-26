@@ -290,7 +290,7 @@ export default defineComponent({
     //   _id: props.programId
     // });
     // ENTER ACTIVITY NAME BELOW
-    const moduleName = ref('Activity Name');
+    const moduleName = ref('Team');
     const page = reactive({
       subpages: ['Setup', 'Presets'],
       currentPage: 'Setup'
@@ -305,7 +305,7 @@ export default defineComponent({
         ['#ae90b0', '#f79961', '#000000']
       ],
       // ENTER ACTIVITY COLOR
-      selectedColor: '#dedede'
+      selectedColor: '#fec34b'
     });
     const getColor = computed(() => {
       return color.selectedColor.substring(0, 7);

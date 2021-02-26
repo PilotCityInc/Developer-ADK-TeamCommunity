@@ -151,11 +151,12 @@
       <div class="module-default__manage-title text-h5 font-weight-black mt-6">Create</div>
       <div class="module-default__log-text mb-5 mt-5">
         <v-text-field
+          rounded
           class="module-default__text-field"
           placeholder="Enter new team name"
           outlined
         ></v-text-field>
-        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
+        <v-btn rounded class="module-default__log-btn" depressed outlined :ripple="false"
           >Create Team</v-btn
         >
       </div>
@@ -172,16 +173,17 @@
       <div class="module-default__manage-title text-h5 font-weight-black mb-3">Rename</div>
       <div class="module-default__log-text mb-5 mt-5">
         <v-text-field
+          rounded
           class="module-default__text-field"
           placeholder="Rename team name"
           outlined
         ></v-text-field>
-        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
+        <v-btn rounded class="module-default__log-btn" depressed outlined :ripple="false"
           >Rename Team</v-btn
         >
       </div>
 
-      <v-btn large color="red" dark depressed>Leave Team</v-btn>
+      <v-btn rounded large color="red" dark depressed>Leave Team</v-btn>
 
       <!-- ENTER CONTENT HERE -->
       <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->

@@ -84,14 +84,8 @@ export default {
     //     ctx.emit('input', newVal);
     //   }
     // });
-    const boilerInstructions = ref([
-      'Click resource link',
-      'Review, complete or understand resource contents',
-      'Mark completed until all finished'
-    ]);
-    const goal = ref([
-      'To research employer-provided resources, links, examples, possibilities & direction for projects'
-    ]);
+    const boilerInstructions = ref(['Explore teams to join or create a team', 'Manage your team']);
+    const goal = ref(['To join, create or manage your project team']);
     // function populate() {
     //   boilerInstructions.value.push('');
     // }

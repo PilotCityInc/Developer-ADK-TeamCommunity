@@ -5,8 +5,8 @@
 
       <div class="presets__section-title">General</div>
       <!-- <div class="presets__nopresets">No tweaking necessary</div> -->
-            <div class="presets__section-title">Maximum Team Members</div>
-      <v-select :items="items" filled dense outlined label="Maximum Team Members"></v-select>
+      <!-- <div class="presets__section-title">Maximum Team Members</div> -->
+      <v-select :items="items" outlined label="Maximum Team Members"></v-select>
       <v-divider class="presets__divider"></v-divider>
       <div class="presets__section-title">Instructions</div>
       <Instruct v-model="setupInstructions" />
@@ -44,11 +44,8 @@
         outlined
       ></v-select>
       <!-- POST-ACTIVITY REFLECTION -->
-      <div class="presets__reflection">
+      <!-- <div class="presets__reflection">
         <v-btn class="presets__reflection-buttons" small depressed outlined>Save</v-btn>
-<<<<<<< HEAD
-      </div>
-=======
         <v-btn class="presets__reflection-buttons" small depressed outlined>Preview</v-btn>
       </div> -->
       <v-divider class="presets__divider"></v-divider>
@@ -65,7 +62,6 @@
       <br />
       <!-- If activity is optional, show button below -->
       <div><v-btn color="red" disabled depressed>Delete Activity</v-btn></div>
->>>>>>> upstream/master
     </div>
   </v-container>
 </template>
@@ -78,6 +74,9 @@ import { items } from './const';
 
 export default defineComponent({
   name: 'ModulePresets',
+  components: {
+    Instruct
+  },
   data() {
     return {
       items
