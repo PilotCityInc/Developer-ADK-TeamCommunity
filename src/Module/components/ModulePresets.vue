@@ -5,7 +5,7 @@
 
       <div class="presets__section-title">General</div>
       <!-- <div class="presets__nopresets">No tweaking necessary</div> -->
-            <div class="presets__section-title">Maximum Team Members</div>
+      <div class="presets__section-title">Maximum Team Members</div>
       <v-select :items="items" filled dense outlined label="Maximum Team Members"></v-select>
       <v-divider class="presets__divider"></v-divider>
       <div class="presets__section-title">Instructions</div>
@@ -46,11 +46,8 @@
       <!-- POST-ACTIVITY REFLECTION -->
       <div class="presets__reflection">
         <v-btn class="presets__reflection-buttons" small depressed outlined>Save</v-btn>
-<<<<<<< HEAD
-      </div>
-=======
         <v-btn class="presets__reflection-buttons" small depressed outlined>Preview</v-btn>
-      </div> -->
+      </div>
       <v-divider class="presets__divider"></v-divider>
       <!-- If activity is required, show button below, make tooltip show up while disabled, right now tooltip doesn't show up -->
       <!-- <div>
@@ -65,7 +62,6 @@
       <br />
       <!-- If activity is optional, show button below -->
       <div><v-btn color="red" disabled depressed>Delete Activity</v-btn></div>
->>>>>>> upstream/master
     </div>
   </v-container>
 </template>
