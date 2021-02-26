@@ -17,7 +17,11 @@ services:
       - ./:/usr/src/app
       - usr/src/app/node_modules
     ports:
+<<<<<<< HEAD
       - 8001:8080
+=======
+      - 8052:8080
+>>>>>>> upstream/master
     stdin_open: true
     tty: true
     command: ["yarn","run","serve"]

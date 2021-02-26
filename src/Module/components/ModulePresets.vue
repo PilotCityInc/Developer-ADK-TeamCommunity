@@ -2,12 +2,70 @@
   <v-container class="module-outcomes">
     <div class="module-outcomes__container">
       <!-- <v-divider class="presets__divider"></v-divider> -->
-      <div class="presets__section-title">Maximum Team Members</div>
+
+      <div class="presets__section-title">General</div>
+      <!-- <div class="presets__nopresets">No tweaking necessary</div> -->
+            <div class="presets__section-title">Maximum Team Members</div>
       <v-select :items="items" filled dense outlined label="Maximum Team Members"></v-select>
+      <v-divider class="presets__divider"></v-divider>
+      <div class="presets__section-title">Instructions</div>
+      <Instruct v-model="setupInstructions" />
+      <v-divider class="presets__divider"></v-divider>
+      <div class="presets__section-title">Defaults</div>
+
+      <v-select
+        disabled
+        :items="group"
+        label="What activity group does this belong to?"
+        outlined
+      ></v-select>
+      <v-select
+        disabled
+        :items="required"
+        label="Is this activity required for participants to complete?"
+        outlined
+      ></v-select>
+
+      <!-- <v-select
+        :items="lockOrder"
+        label="Lock activity group and placement order?"
+        outlined
+      ></v-select> -->
+      <v-select disabled :items="deliverable" label="Is this a deliverable?" outlined></v-select>
+      <!-- <v-select
+        :items="accessibility"
+        label="Make this activity accessible to participants anytime?"
+        outlined
+      ></v-select> -->
+      <v-select
+        disabled
+        :items="endEarly"
+        label="Allow participants to end program early after completion of this activity?"
+        outlined
+      ></v-select>
       <!-- POST-ACTIVITY REFLECTION -->
       <div class="presets__reflection">
         <v-btn class="presets__reflection-buttons" small depressed outlined>Save</v-btn>
+<<<<<<< HEAD
       </div>
+=======
+        <v-btn class="presets__reflection-buttons" small depressed outlined>Preview</v-btn>
+      </div> -->
+      <v-divider class="presets__divider"></v-divider>
+      <!-- If activity is required, show button below, make tooltip show up while disabled, right now tooltip doesn't show up -->
+      <!-- <div>
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="red" disabled v-bind="attrs" v-on="on">Delete Activity</v-btn>
+          </template>
+          <span>Required activities cannot be deleted</span>
+        </v-tooltip>
+      </div> -->
+      <!-- Delete break when the two delete buttons above and below have been integrated as one solution -->
+      <br />
+      <!-- If activity is optional, show button below -->
+      <div><v-btn color="red" disabled depressed>Delete Activity</v-btn></div>
+>>>>>>> upstream/master
     </div>
   </v-container>
 </template>

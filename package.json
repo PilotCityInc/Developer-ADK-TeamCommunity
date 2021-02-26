@@ -2,8 +2,13 @@
   "author": "Juxsta",
   "license": "MIT",
   "main": "/dist/index.ts",
+<<<<<<< HEAD
   "name": "developer-adk-teamcommunity",
   "version": "1.0.4",
+=======
+  "name": "developer-adk-boiler",
+  "version": "0.1.1",
+>>>>>>> upstream/master
   "description": "PilotCity Development Kit Template for creating your own Program Activities",
   "repository": {
     "type": "git",

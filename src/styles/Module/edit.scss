@@ -5,7 +5,9 @@
 }
 .module-edit{
   &__container{
-    max-width: 80%;
+    max-width: 85%;
     width: 100%;
+    flex-direction: column;
+    display: flex;
   }
 }
