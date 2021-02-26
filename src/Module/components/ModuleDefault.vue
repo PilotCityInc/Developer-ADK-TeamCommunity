@@ -43,7 +43,7 @@
       stream
     />
     <div class="module-edit__container">
-      <div class="headline font-weight-black mb-3">Join</div>
+      <div class="headline font-weight-black mb-6">Join</div>
       <!--buttons for the  team -->
       <div class="module-default__upper-body">
         <div class="module-default__team">
@@ -253,9 +253,487 @@
               /></v-avatar>
             </div>
           </div>
+
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    :ripple="false"
+                    rounded
+                    depressed
+                    small
+                    outlined
+                    class="module-default__team-buttons mr-3 font-weight-black"
+                    v-on="on"
+                    >Team Yeezy</v-btn
+                  >
+                </template>
+
+                <v-card>
+                  <v-card-title class="d-flex flex-column">
+                    <div class="overline font-weight-bold">Enter password to join team</div>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+
+                  <v-container class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                      <div class="d-flex flex-row justify-center mt-6">
+                        <v-text-field
+                          class="justify-center ma-2"
+                          x-large
+                          rounded
+                          label="Enter password"
+                          outlined
+                          hide-details
+                        ></v-text-field>
+                        <v-btn class="ma-2" x-large dark rounded depressed>Join Team</v-btn>
+                      </div>
+                      <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
+
+                      <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
+
+                      <div class="d-flex justify-center mt-3 mb-3">
+                        <v-btn icon @click="joinTeamDialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                    </div>
+                  </v-container>
+                </v-card>
+              </v-dialog>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+          </div>
+
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    :ripple="false"
+                    rounded
+                    depressed
+                    small
+                    outlined
+                    class="module-default__team-buttons mr-3 font-weight-black"
+                    v-on="on"
+                    >Team Yeezy</v-btn
+                  >
+                </template>
+
+                <v-card>
+                  <v-card-title class="d-flex flex-column">
+                    <div class="overline font-weight-bold">Enter password to join team</div>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+
+                  <v-container class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                      <div class="d-flex flex-row justify-center mt-6">
+                        <v-text-field
+                          class="justify-center ma-2"
+                          x-large
+                          rounded
+                          label="Enter password"
+                          outlined
+                          hide-details
+                        ></v-text-field>
+                        <v-btn class="ma-2" x-large dark rounded depressed>Join Team</v-btn>
+                      </div>
+                      <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
+
+                      <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
+
+                      <div class="d-flex justify-center mt-3 mb-3">
+                        <v-btn icon @click="joinTeamDialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                    </div>
+                  </v-container>
+                </v-card>
+              </v-dialog>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+          </div>
+
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    :ripple="false"
+                    rounded
+                    depressed
+                    small
+                    outlined
+                    class="module-default__team-buttons mr-3 font-weight-black"
+                    v-on="on"
+                    >Team Yeezy</v-btn
+                  >
+                </template>
+
+                <v-card>
+                  <v-card-title class="d-flex flex-column">
+                    <div class="overline font-weight-bold">Enter password to join team</div>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+
+                  <v-container class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                      <div class="d-flex flex-row justify-center mt-6">
+                        <v-text-field
+                          class="justify-center ma-2"
+                          x-large
+                          rounded
+                          label="Enter password"
+                          outlined
+                          hide-details
+                        ></v-text-field>
+                        <v-btn class="ma-2" x-large dark rounded depressed>Join Team</v-btn>
+                      </div>
+                      <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
+
+                      <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
+
+                      <div class="d-flex justify-center mt-3 mb-3">
+                        <v-btn icon @click="joinTeamDialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                    </div>
+                  </v-container>
+                </v-card>
+              </v-dialog>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+          </div>
+
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    :ripple="false"
+                    rounded
+                    depressed
+                    small
+                    outlined
+                    class="module-default__team-buttons mr-3 font-weight-black"
+                    v-on="on"
+                    >Team Yeezy</v-btn
+                  >
+                </template>
+
+                <v-card>
+                  <v-card-title class="d-flex flex-column">
+                    <div class="overline font-weight-bold">Enter password to join team</div>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+
+                  <v-container class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                      <div class="d-flex flex-row justify-center mt-6">
+                        <v-text-field
+                          class="justify-center ma-2"
+                          x-large
+                          rounded
+                          label="Enter password"
+                          outlined
+                          hide-details
+                        ></v-text-field>
+                        <v-btn class="ma-2" x-large dark rounded depressed>Join Team</v-btn>
+                      </div>
+                      <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
+
+                      <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
+
+                      <div class="d-flex justify-center mt-3 mb-3">
+                        <v-btn icon @click="joinTeamDialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                    </div>
+                  </v-container>
+                </v-card>
+              </v-dialog>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+          </div>
+
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    :ripple="false"
+                    rounded
+                    depressed
+                    small
+                    outlined
+                    class="module-default__team-buttons mr-3 font-weight-black"
+                    v-on="on"
+                    >Team Yeezy</v-btn
+                  >
+                </template>
+
+                <v-card>
+                  <v-card-title class="d-flex flex-column">
+                    <div class="overline font-weight-bold">Enter password to join team</div>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+
+                  <v-container class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                      <div class="d-flex flex-row justify-center mt-6">
+                        <v-text-field
+                          class="justify-center ma-2"
+                          x-large
+                          rounded
+                          label="Enter password"
+                          outlined
+                          hide-details
+                        ></v-text-field>
+                        <v-btn class="ma-2" x-large dark rounded depressed>Join Team</v-btn>
+                      </div>
+                      <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
+
+                      <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
+
+                      <div class="d-flex justify-center mt-3 mb-3">
+                        <v-btn icon @click="joinTeamDialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                    </div>
+                  </v-container>
+                </v-card>
+              </v-dialog>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+          </div>
+
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    :ripple="false"
+                    rounded
+                    depressed
+                    small
+                    outlined
+                    class="module-default__team-buttons mr-3 font-weight-black"
+                    v-on="on"
+                    >Team Yeezy</v-btn
+                  >
+                </template>
+
+                <v-card>
+                  <v-card-title class="d-flex flex-column">
+                    <div class="overline font-weight-bold">Enter password to join team</div>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+
+                  <v-container class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                      <div class="d-flex flex-row justify-center mt-6">
+                        <v-text-field
+                          class="justify-center ma-2"
+                          x-large
+                          rounded
+                          label="Enter password"
+                          outlined
+                          hide-details
+                        ></v-text-field>
+                        <v-btn class="ma-2" x-large dark rounded depressed>Join Team</v-btn>
+                      </div>
+                      <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
+
+                      <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
+
+                      <div class="d-flex justify-center mt-3 mb-3">
+                        <v-btn icon @click="joinTeamDialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                    </div>
+                  </v-container>
+                </v-card>
+              </v-dialog>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+          </div>
+
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-bind="attrs"
+                    :ripple="false"
+                    rounded
+                    depressed
+                    small
+                    outlined
+                    class="module-default__team-buttons mr-3 font-weight-black"
+                    v-on="on"
+                    >Team Yeezy</v-btn
+                  >
+                </template>
+
+                <v-card>
+                  <v-card-title class="d-flex flex-column">
+                    <div class="overline font-weight-bold">Enter password to join team</div>
+                  </v-card-title>
+
+                  <v-divider></v-divider>
+
+                  <v-container class="d-flex justify-center">
+                    <div class="d-flex flex-column justify-center">
+                      <div class="d-flex flex-row justify-center mt-6">
+                        <v-text-field
+                          class="justify-center ma-2"
+                          x-large
+                          rounded
+                          label="Enter password"
+                          outlined
+                          hide-details
+                        ></v-text-field>
+                        <v-btn class="ma-2" x-large dark rounded depressed>Join Team</v-btn>
+                      </div>
+                      <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
+
+                      <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
+
+                      <div class="d-flex justify-center mt-3 mb-3">
+                        <v-btn icon @click="joinTeamDialog = false"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </div>
+                    </div>
+                  </v-container>
+                </v-card>
+              </v-dialog>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img src="https://picsum.photos/510/300?random"
+              /></v-avatar>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="mt-4 mb-10">(Add pagination here with 10 teams per page)</div>
+      <div class="mt-4 mb-10 d-flex justify-start">
+        <v-pagination :length="3" circle></v-pagination>
+      </div>
       <div class="headline font-weight-black mb-6 mt-6">Create</div>
       <div class="module-default__log-text mb-5 mt-5">
         <v-text-field
@@ -315,7 +793,7 @@
       </div>
 
       <div class="module-default__manage">
-        <div class="headline font-weight-black mb-3">Manage</div>
+        <div class="headline font-weight-black mb-3">Team Yeezy</div>
         <ManageTable class="module-default__table-view"></ManageTable>
       </div>
 
