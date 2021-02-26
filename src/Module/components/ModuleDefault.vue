@@ -43,21 +43,164 @@
       stream
     />
     <div class="module-edit__container">
+      <div class="module-default__manage-title text-h5 font-weight-black">Join</div>
+      <!--buttons for the  team -->
+      <div class="module-default__upper-body">
+        <div class="module-default__team">
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-btn
+                :ripple="false"
+                rounded
+                depressed
+                small
+                dark
+                class="module-default__team-buttons mr-3"
+                >Team Yeezy</v-btn
+              >
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+          </div>
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-btn
+                :ripple="false"
+                rounded
+                depressed
+                small
+                dark
+                class="module-default__team-buttons mr-3"
+                >Team Easy</v-btn
+              >
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+          </div>
+          <div class="module-default__team-row mb-3 mt-3">
+            <div>
+              <v-btn
+                :ripple="false"
+                rounded
+                depressed
+                small
+                dark
+                class="module-default__team-buttons mr-3"
+                >Team Peezy</v-btn
+              >
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-2 mr-2" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+            <div>
+              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
+                ><img
+                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
+              /></v-avatar>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module-default__manage-title text-h5 font-weight-black mt-6">Create</div>
+      <div class="module-default__log-text mb-5 mt-5">
+        <v-text-field
+          class="module-default__text-field"
+          placeholder="Enter new team name"
+          outlined
+        ></v-text-field>
+        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
+          >Create Team</v-btn
+        >
+      </div>
+
+      <div class="module-default__manage">
+        <div class="module-default__manage-title text-h5 font-weight-black mb-3">Manage</div>
+        <ManageTable class="module-default__table-view"></ManageTable>
+      </div>
+
+      <!-- <div class="module-default__new">
+        <div class="module-default__manage-new text-h5 font-weight-black">New</div>
+        <NewTable class="module-default__table-view"></NewTable>
+      </div> -->
+      <div class="module-default__manage-title text-h5 font-weight-black mb-3">Rename</div>
+      <div class="module-default__log-text mb-5 mt-5">
+        <v-text-field
+          class="module-default__text-field"
+          placeholder="Rename team name"
+          outlined
+        ></v-text-field>
+        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
+          >Rename Team</v-btn
+        >
+      </div>
+
+      <v-btn large color="red" dark depressed>Leave Team</v-btn>
+
       <!-- ENTER CONTENT HERE -->
       <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->
-      <div class="module-default__none">Design your activity here</div>
+      <!-- <div class="module-default__none">Design your activity here</div> -->
     </div>
   </v-container>
 </template>
-
 <script lang="ts">
 import { ref } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
+import ManageTable from './ManageTable.vue';
+// import NewTable from './NewTable.vue';
 
 export default {
   name: 'ModuleDefault',
   components: {
-    Instruct
+    Instruct,
+    ManageTable
+    // NewTable
   },
   apollo: {},
   data() {
@@ -76,6 +219,54 @@ export default {
 
 <style lang="scss">
 .module-default {
+  &__upper-body {
+    display: flex;
+    width: 100%;
+  }
+  &__team {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    // margin-left: 5.4%;
+    &-buttons {
+      margin-bottom: 10px;
+      &.v-btn:not(.v-btn--round).v-size--default {
+        width: 250px;
+      }
+    }
+  }
+
+  &__team-avatar {
+  }
+  &__team-row {
+    flex-direction: row;
+    display: flex;
+    // justify-content: center !important;
+    // align-items: center !important;
+    // align-content: center !important;
+  }
+  &__log-text {
+    display: flex;
+  }
+  &__text-field {
+    &.v-text-field {
+      width: 400px;
+    }
+  }
+  &__log-btn {
+    &.v-btn:not(.v-btn--round).v-size--default {
+      min-height: 57px;
+    }
+    margin-left: 20px;
+    height: 100%;
+  }
+  &__table-view {
+    width: 100%;
+    // padding-left: 10px;
+    // padding-right: 10px;
+    margin-bottom: 20px;
+  }
   &__none {
     border-radius: 5px;
     // border: 1px solid #dedede;

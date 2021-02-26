@@ -9,16 +9,15 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs } from '@vue/composition-api';
-// import gql from 'graphql-tag';
+import { ref } from '@vue/composition-api';
 
 export default {
   name: 'ModuleSetup',
-
   setup() {
-    const setup = reactive({});
+    const setupInstructions = ref(['']);
+    // const setup = reactive({});
     return {
-      ...toRefs(setup)
+      setupInstructions
     };
   }
 };

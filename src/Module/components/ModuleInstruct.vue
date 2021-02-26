@@ -74,7 +74,7 @@
 <script lang="ts">
 import { ref, computed, defineComponent, PropType } from '@vue/composition-api';
 
-export default defineComponent({
+export default {
   name: 'ModuleInstruct',
 
   setup() {
@@ -98,7 +98,7 @@ export default defineComponent({
 
     return { boilerInstructions, goal };
   }
-});
+};
 </script>
 
 <style lang="scss">
