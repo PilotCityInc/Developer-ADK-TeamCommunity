@@ -305,7 +305,7 @@ export default defineComponent({
         ['#ae90b0', '#f79961', '#000000']
       ],
       // ENTER ACTIVITY COLOR
-      selectedColor: '#fec34b'
+      selectedColor: '#6eba80'
     });
     const getColor = computed(() => {
       return color.selectedColor.substring(0, 7);
