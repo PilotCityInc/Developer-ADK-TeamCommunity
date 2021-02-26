@@ -4,7 +4,8 @@ networks:
     driver: bridge
 services:
   teamcommunity: #in container-based development
-    image: pilotcity/boiler
+    # image: pilotcity/boiler
+    build: .
     container_name: teamcommunity
     environment:
       - NODE_ENV=development
