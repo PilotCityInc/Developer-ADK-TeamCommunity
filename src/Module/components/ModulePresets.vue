@@ -6,7 +6,12 @@
       <div class="presets__section-title">General</div>
       <!-- <div class="presets__nopresets">No tweaking necessary</div> -->
       <!-- <div class="presets__section-title">Maximum Team Members</div> -->
-      <v-select :items="items" outlined label="Maximum Team Members"></v-select>
+      <v-select
+        :v-model="adkData.maxTeamMembers"
+        :items="MAX_TEAM_MEMBERS_ITEMS"
+        outlined
+        label="Maximum Team Members"
+      ></v-select>
       <v-divider class="presets__divider"></v-divider>
       <div class="presets__section-title">Instructions</div>
       <Instruct v-model="setupInstructions" />
@@ -67,9 +72,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent, PropType } from '@vue/composition-api';
+import { createLoader, getModAdk, getModMongoDoc } from 'pcv4lib/src';
 import Instruct from './ModuleInstruct.vue';
-import { items } from './const';
+import { MAX_TEAM_MEMBERS_ITEMS } from './const';
+import { MongoDoc } from '../types';
 // import gql from 'graphql-tag';
 
 export default defineComponent({
@@ -77,42 +84,48 @@ export default defineComponent({
   components: {
     Instruct
   },
-  data() {
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    }
+  },
+  setup(props, ctx) {
+    const defaultTeamProps = {
+      maxTeamMembers: 5
+    };
+    const { adkData } = getModAdk(props, ctx.emit, 'team', defaultTeamProps);
+    console.log(adkData.value);
+    const { programDoc } = getModMongoDoc(props, ctx.emit);
+    //   const presets = reactive({
+    //     group: ['Setup', 'Project', 'Screening', 'Internship'],
+    //     required: ['Creator requires this activity', 'Yes', 'No'],
+    //     lockOrder: ['Creator locked activity group and placement order', 'Yes', 'No'],
+    //     deliverable: ['Yes', 'No'],
+    //     notifications: ['Creator turned on by default', 'Turn on', 'Turn off'],
+    //     accessibility: [
+    //       'Creator has turned off accessibility anytime',
+    //       'Creator has turned on accessibility anytime',
+    //       'Yes',
+    //       'No'
+    //     ],
+    //     items: ['1', '2', '3', '4', '5', '6', '7'],
+    //     endEarly: [
+    //       'Creator has not allowed participants to end early after this activity',
+    //       'Creator has allow end early option only at preset order placement',
+    //       'Yes',
+    //       'No'
+    //     ]
+    //   });
+    //   const setupInstructions = ref({
+    //     description: '',
+    //     instructions: ['', '', '']
+    //   });
     return {
-      items
+      adkData,
+      MAX_TEAM_MEMBERS_ITEMS
     };
   }
-
-  // setup() {
-  //   const presets = reactive({
-  //     group: ['Setup', 'Project', 'Screening', 'Internship'],
-  //     required: ['Creator requires this activity', 'Yes', 'No'],
-  //     lockOrder: ['Creator locked activity group and placement order', 'Yes', 'No'],
-  //     deliverable: ['Yes', 'No'],
-  //     notifications: ['Creator turned on by default', 'Turn on', 'Turn off'],
-  //     accessibility: [
-  //       'Creator has turned off accessibility anytime',
-  //       'Creator has turned on accessibility anytime',
-  //       'Yes',
-  //       'No'
-  //     ],
-  //     items: ['1', '2', '3', '4', '5', '6', '7'],
-  //     endEarly: [
-  //       'Creator has not allowed participants to end early after this activity',
-  //       'Creator has allow end early option only at preset order placement',
-  //       'Yes',
-  //       'No'
-  //     ]
-  //   });
-  //   const setupInstructions = ref({
-  //     description: '',
-  //     instructions: ['', '', '']
-  //   });
-  //   return {
-  //     ...toRefs(presets),
-  //     setupInstructions
-  //   };
-  // }
 });
 </script>
 

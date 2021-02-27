@@ -103,7 +103,7 @@
         </div>
         <div class="module__page">
           <keep-alive>
-            <component :is="getComponent" />
+            <component :is="getComponent" v-model="programDoc" />
           </keep-alive>
         </div>
       </div>
@@ -223,47 +223,13 @@
     <!-- TIMELINE END -->
   </v-container>
 </template>
-<style lang="scss">
-html,
-body {
-  font-family: 'Raleway';
-  font-size: 16px;
-  width: 100%;
-  height: 100%;
-}
 
-.v-timeline-item__divider {
-  align-items: start !important;
-}
-
-.module {
-  &__trash {
-    // justify-content: start;
-    align-items: start;
-    // align-content: start;
-  }
-
-  &__header-chips {
-    padding-bottom: 15px;
-  }
-}
-
-.v-btn__content.module__chat-menu-button {
-  justify-content: left;
-  width: 100%;
-}
-.module__menu {
-  .v-color-picker {
-    &__controls {
-      display: none;
-    }
-  }
-}
-</style>
 <script lang="ts">
-import { computed, reactive, ref, toRefs, defineComponent } from '@vue/composition-api';
+import { computed, reactive, ref, toRefs, defineComponent, PropType } from '@vue/composition-api';
+import { getModMongoDoc } from 'pcv4lib/src';
 import '../styles/module.scss';
 // import { Collection } from 'mongodb';
+import { MongoDoc } from './types';
 import * as Module from './components';
 
 export default defineComponent({
@@ -274,22 +240,15 @@ export default defineComponent({
     'module-presets': Module.Presets,
     'module-preview': Module.Default
   },
-  //   props: {
-  // programCollection: {
-  //   required: true,
-  //   type: Object as PropType<Collection>
-  // },
-  // programId: {
-  //   require: true,
-  //   type: String
-  // }
-  //   },
-  setup() {
-    //
-    // props.programCollection.findOne({
-    //   _id: props.programId
-    // });
-    // ENTER ACTIVITY NAME BELOW
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    }
+  },
+  setup(props, ctx) {
+    const { programDoc } = getModMongoDoc(props, ctx.emit);
+
     const moduleName = ref('Team');
     const page = reactive({
       subpages: ['Setup', 'Presets'],
@@ -343,6 +302,7 @@ export default defineComponent({
       timelineData.input = '';
     }
     return {
+      programDoc,
       ...toRefs(color),
       ...toRefs(page),
       config,
@@ -357,3 +317,40 @@ export default defineComponent({
   }
 });
 </script>
+<style lang="scss">
+html,
+body {
+  font-family: 'Raleway';
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+.v-timeline-item__divider {
+  align-items: start !important;
+}
+
+.module {
+  &__trash {
+    // justify-content: start;
+    align-items: start;
+    // align-content: start;
+  }
+
+  &__header-chips {
+    padding-bottom: 15px;
+  }
+}
+
+.v-btn__content.module__chat-menu-button {
+  justify-content: left;
+  width: 100%;
+}
+.module__menu {
+  .v-color-picker {
+    &__controls {
+      display: none;
+    }
+  }
+}
+</style>
