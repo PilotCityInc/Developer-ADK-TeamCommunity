@@ -62,10 +62,10 @@
 </template>
 
 <script lang="ts">
-import { PropType, reactive, toRefs } from '@vue/composition-api';
+import { defineComponent, PropType, reactive, toRefs } from '@vue/composition-api';
 import { TeamDoc } from '../types';
 
-export default {
+export default defineComponent({
   name: 'TeamRow',
   props: {
     team: {
@@ -85,5 +85,5 @@ export default {
     };
     return { joinTeam, ...toRefs(state) };
   }
-};
+});
 </script>

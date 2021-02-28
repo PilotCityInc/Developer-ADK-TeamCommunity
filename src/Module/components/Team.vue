@@ -188,11 +188,11 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, PropType, computed } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs, PropType, computed } from '@vue/composition-api';
 import ManageTable from './ManageTable.vue';
 import { TeamDoc } from '../types';
 
-export default {
+export default defineComponent({
   name: 'Team',
   components: { ManageTable },
   props: {
@@ -253,5 +253,5 @@ export default {
       leaveTeam
     };
   }
-};
+});
 </script>

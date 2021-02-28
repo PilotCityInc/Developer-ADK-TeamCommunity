@@ -19,18 +19,19 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, computed } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs, computed, PropType } from '@vue/composition-api';
+import { TeamDoc } from '../types';
 import TeamRow from './TeamRow.vue';
 
 const MAX_TEAMS_PER_PAGE = 10;
 
-export default {
+export default defineComponent({
   name: 'JoinTeam',
   components: { TeamRow },
   props: {
     teams: {
       required: true,
-      type: Array
+      type: Array as PropType<Array<TeamDoc>>
     }
   },
   setup(props, ctx) {
@@ -50,5 +51,5 @@ export default {
       numPages
     };
   }
-};
+});
 </script>

@@ -115,11 +115,11 @@
 </template>
 
 <script lang="ts">
-import { computed, PropType, reactive, toRefs } from '@vue/composition-api';
+import { defineComponent, computed, PropType, reactive, toRefs } from '@vue/composition-api';
 import { MANAGEHEADER, manageitems } from './const';
 import { TeamDoc } from '../types';
 
-export default {
+export default defineComponent({
   name: 'ManageTable',
   props: {
     teamDoc: {
@@ -137,7 +137,7 @@ export default {
       removeMemberDialog: false,
       changeOwnerDialog: false
     });
-    const isOwner = item => {
+    const isOwner = (item: Record<'data', Record<string, any>>) => {
       return item.data.id === props.teamDoc.data.owner;
     };
     const teamMembers = computed(() => {
@@ -173,5 +173,5 @@ export default {
       ...toRefs(state)
     };
   }
-};
+});
 </script>

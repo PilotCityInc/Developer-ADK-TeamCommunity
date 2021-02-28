@@ -8,6 +8,9 @@ export interface MongoDoc {
 
 export interface TeamDoc {
   data: {
+    id: number;
+    owner: number;
+    password: string;
     name: string;
     members: Record<string, any>[];
   };

@@ -66,7 +66,7 @@
   </v-container>
 </template>
 <script lang="ts">
-import { reactive, toRefs } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs } from '@vue/composition-api';
 import Instruct from './ModuleInstruct.vue';
 import CreateTeam from './CreateTeam.vue';
 import JoinTeam from './JoinTeam.vue';
@@ -92,7 +92,7 @@ const dummyTeams = new Array(35).fill().map((e, i) => {
   };
 });
 
-export default {
+export default defineComponent({
   name: 'ModuleDefault',
   components: {
     Instruct,
@@ -115,7 +115,7 @@ export default {
           team: null as null | number
         }
       },
-      teamDoc: null
+      teamDoc: null as null | TeamDoc
     });
 
     state.teams.unshift({
@@ -228,7 +228,7 @@ export default {
       leaveTeam
     };
   }
-};
+});
 </script>
 
 <style lang="scss">
