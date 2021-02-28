@@ -7,11 +7,17 @@
       <!-- <div class="presets__nopresets">No tweaking necessary</div> -->
       <!-- <div class="presets__section-title">Maximum Team Members</div> -->
       <v-select
-        :v-model="adkData.maxTeamMembers"
-        :items="MAX_TEAM_MEMBERS_ITEMS"
+        v-model="adkData.maxTeamMembers"
+        :items="maxTeamMemberItems"
         outlined
         label="Maximum Team Members"
       ></v-select>
+      <div class="text-center">
+        <v-btn x-large outlined depressed :loading="loading" @click="process()">Save</v-btn>
+      </div>
+      <v-alert v-if="success || error" :type="success ? 'success' : 'error'" class="mt-2">{{
+        message
+      }}</v-alert>
       <v-divider class="presets__divider"></v-divider>
       <div class="presets__section-title">Instructions</div>
       <Instruct v-model="setupInstructions" />
@@ -75,7 +81,6 @@
 import { defineComponent, PropType } from '@vue/composition-api';
 import { createLoader, getModAdk, getModMongoDoc } from 'pcv4lib/src';
 import Instruct from './ModuleInstruct.vue';
-import { MAX_TEAM_MEMBERS_ITEMS } from './const';
 import { MongoDoc } from '../types';
 // import gql from 'graphql-tag';
 
@@ -91,11 +96,12 @@ export default defineComponent({
     }
   },
   setup(props, ctx) {
+    const maxTeamMemberItems = [...Array(7).keys()].map(i => i + 1);
     const defaultTeamProps = {
       maxTeamMembers: 5
     };
+
     const { adkData } = getModAdk(props, ctx.emit, 'team', defaultTeamProps);
-    console.log(adkData.value);
     const { programDoc } = getModMongoDoc(props, ctx.emit);
     //   const presets = reactive({
     //     group: ['Setup', 'Project', 'Screening', 'Internship'],
@@ -123,7 +129,8 @@ export default defineComponent({
     //   });
     return {
       adkData,
-      MAX_TEAM_MEMBERS_ITEMS
+      maxTeamMemberItems,
+      ...createLoader(programDoc.value.save, 'Saved Successfully', 'Could not save at this time')
     };
   }
 });

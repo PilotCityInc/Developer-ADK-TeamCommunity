@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-data-table
-      :headers="header"
+      :headers="tableHeaders"
       :items="teamMembers"
       sort-by="resource"
       :items-per-page="100"
@@ -116,7 +116,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, reactive, toRefs } from '@vue/composition-api';
-import { MANAGEHEADER, manageitems } from './const';
 import { TeamDoc } from '../types';
 
 export default defineComponent({
@@ -140,6 +139,16 @@ export default defineComponent({
     const isOwner = (item: Record<'data', Record<string, any>>) => {
       return item.data.id === props.teamDoc.data.owner;
     };
+    const tableHeaders = computed(() => {
+      const headers = [
+        { text: '', align: 'start', value: 'avatar', width: '5%' },
+        { text: 'Name', align: 'start', value: 'data.name', width: '50%' },
+        { text: 'Access', align: 'start', value: 'access', sortable: false, width: '20%' },
+        { text: 'Action', align: 'start', value: 'action', sortable: false, width: '25%' }
+      ];
+      if (isOwner(props.viewer)) return headers;
+      return headers.filter(column => column.value !== 'action');
+    });
     const teamMembers = computed(() => {
       return props.teamDoc.data.members.slice().sort(member => {
         return isOwner(member) ? -1 : 1;
@@ -163,11 +172,10 @@ export default defineComponent({
       }
     };
     return {
-      header: MANAGEHEADER,
+      tableHeaders,
       teamMembers,
       teamMembersExceptOwner,
       isOwner,
-      manageitems,
       removeMember,
       changeOwner,
       ...toRefs(state)
