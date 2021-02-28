@@ -7,28 +7,28 @@
       :items-per-page="100"
       :hide-default-footer="true"
     >
-      <template #item.avatar>
+      <template #[`item.avatar`]>
         <v-avatar size="32"><img src="https://picsum.photos/510/300?random" /></v-avatar>
       </template>
-      <template #item.access="{ item }">
+      <template #[`item.access`]="{ item }">
         {{ isOwner(item) ? 'Owner' : 'Member' }}
       </template>
-      <template v-if="viewer.data.id === teamDoc.data.owner" #item.action="{ item }">
+      <template v-if="viewer.data.id === teamDoc.data.owner" #[`item.action`]="{ item }">
         <v-btn
+          v-if="!isOwner(item)"
           x-small
           outlined
           depressed
-          v-if="!isOwner(item)"
           :ripple="false"
           @click="(removeMemberDialog = true), (selectedMember = item.data.id)"
           ><v-icon x-small left> mdi-close-circle </v-icon>Remove</v-btn
         >
 
         <v-btn
+          v-if="isOwner(item)"
           x-small
           outlined
           depressed
-          v-if="isOwner(item)"
           :ripple="false"
           @click="changeOwnerDialog = true"
           ><v-icon x-small left> mdi-swap-horizontal-bold </v-icon>Change Owner</v-btn
@@ -73,9 +73,9 @@
         <v-container class="d-flex flex-column justify-center">
           <div class="pl-12 pr-12 mt-4">
             <v-select
+              v-model="selectedMember"
               class=""
               hide-details
-              v-model="selectedMember"
               :items="teamMembersExceptOwner"
               :item-value="'data.id'"
               :item-text="'data.name'"
@@ -103,8 +103,8 @@
               :dark="selectedMember !== null"
               rounded
               depressed
-              @click="changeOwner"
               :disabled="!selectedMember"
+              @click="changeOwner"
               ><v-icon left>mdi-swap-horizontal-bold</v-icon>Change Owner</v-btn
             >
           </div>
@@ -141,7 +141,7 @@ export default defineComponent({
       return item.data.id === props.teamDoc.data.owner;
     };
     const teamMembers = computed(() => {
-      return props.teamDoc.data.members.sort(member => {
+      return props.teamDoc.data.members.slice().sort(member => {
         return isOwner(member) ? -1 : 1;
       });
     });
