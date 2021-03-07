@@ -127,10 +127,15 @@ export default defineComponent({
       state.studentDocument = getModMongoDoc(props, ctx.emit, {}, 'studentDoc', 'inputStudentDoc');
 
     const fetchTeams = async () => {
-      state.teams = await props.db
+      const teams = await props.db
         .collection('ProgramTeam')
         .find({ programId: props.value!.data._id })
         .toArray();
+      state.teams = teams.map(team => {
+        return {
+          data: team
+        };
+      });
     };
     fetchTeams();
 
@@ -150,7 +155,7 @@ export default defineComponent({
       const team = await props.db.collection('ProgramTeam').findOne({ _id });
       state.studentDocument!.data.team = _id;
       state.studentDocument!.update();
-      state.teamDocument = team;
+      state.teamDocument = { data: team };
     };
 
     const createTeam = async (name: string, password: string) => {
@@ -158,10 +163,11 @@ export default defineComponent({
         owner: state.studentDocument!.data._id,
         name,
         password,
-        members: []
+        members: [{ _id: new ObjectId(13), firstName: 'p', lastName: 'ad' }]
       };
       const { insertedId } = await props.db.collection('ProgramTeam').insertOne(team);
       joinTeam(insertedId);
+      fetchTeams();
     };
 
     const removeMember = (_id: ObjectId) => {
@@ -209,6 +215,7 @@ export default defineComponent({
           1
         );
         props.db.collection('ProgramTeam').deleteOne({ _id: state.teamDocument!.data._id });
+        fetchTeams();
       }
       state.studentDocument!.data.team = null;
       state.teamDocument = null;
