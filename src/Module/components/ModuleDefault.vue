@@ -163,7 +163,7 @@ export default defineComponent({
         owner: state.studentDocument!.data._id,
         name,
         password,
-        members: [{ _id: new ObjectId(13), firstName: 'p', lastName: 'ad' }]
+        members: []
       };
       const { insertedId } = await props.db.collection('ProgramTeam').insertOne(team);
       joinTeam(insertedId);
