@@ -8,6 +8,7 @@
           v-for="team in visibleTeams"
           :key="team.data.name"
           :team="team"
+          :max-team-members="maxTeamMembers"
           v-on="$listeners"
         />
       </div>
@@ -32,6 +33,10 @@ export default defineComponent({
     teams: {
       required: true,
       type: Array as PropType<Array<TeamDoc>>
+    },
+    maxTeamMembers: {
+      required: true,
+      type: Number
     }
   },
   setup(props, ctx) {

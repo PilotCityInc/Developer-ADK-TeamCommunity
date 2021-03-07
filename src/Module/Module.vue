@@ -103,7 +103,15 @@
         </div>
         <div class="module__page">
           <keep-alive>
-            <component :is="getComponent" v-model="programDoc" />
+            <component
+              :is="getComponent"
+              v-model="programDoc"
+              :db="db"
+              :team-doc="teamDoc"
+              :student-doc="studentDoc"
+              @inputTeamDoc="$emit('inputTeamDoc', $event)"
+              @inputStudentDoc="$emit('inputStudentDoc', $event)"
+            />
           </keep-alive>
         </div>
       </div>
@@ -226,9 +234,9 @@
 
 <script lang="ts">
 import { computed, reactive, ref, toRefs, defineComponent, PropType } from '@vue/composition-api';
-import { getModMongoDoc } from 'pcv4lib/src';
+import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
 import '../styles/module.scss';
-// import { Collection } from 'mongodb';
+import { Db } from 'mongodb';
 import { MongoDoc } from './types';
 import * as Module from './components';
 
@@ -244,10 +252,29 @@ export default defineComponent({
     value: {
       required: true,
       type: Object as PropType<MongoDoc>
+    },
+    teamDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc | null>,
+      default: () => {}
+    },
+    studentDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc | null>,
+      default: () => {}
+    },
+    db: {
+      required: false,
+      type: Object as PropType<Db>,
+      default: () => {}
     }
   },
   setup(props, ctx) {
-    const { programDoc } = getModMongoDoc(props, ctx.emit);
+    const programDoc = getModMongoDoc(props, ctx.emit);
+    const defaultTeamProps = {
+      maxTeamMembers: 5
+    };
+    getModAdk(props, ctx.emit, 'team', defaultTeamProps);
 
     const moduleName = ref('Team');
     const page = reactive({

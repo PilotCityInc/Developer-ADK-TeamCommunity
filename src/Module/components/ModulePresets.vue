@@ -79,10 +79,10 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@vue/composition-api';
-import { createLoader, getModAdk, getModMongoDoc } from 'pcv4lib/src';
+import { loading, getModAdk, getModMongoDoc } from 'pcv4lib/src';
+// import { Db } from 'mongodb';
 import Instruct from './ModuleInstruct.vue';
 import { MongoDoc } from '../types';
-// import gql from 'graphql-tag';
 
 export default defineComponent({
   name: 'ModulePresets',
@@ -93,16 +93,21 @@ export default defineComponent({
     value: {
       required: true,
       type: Object as PropType<MongoDoc>
+    },
+    teamDoc: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    },
+    db: {
+      required: true,
+      type: Object as PropType<Db>
     }
   },
   setup(props, ctx) {
     const maxTeamMemberItems = [...Array(7).keys()].map(i => i + 1);
-    const defaultTeamProps = {
-      maxTeamMembers: 5
-    };
 
-    const { adkData } = getModAdk(props, ctx.emit, 'team', defaultTeamProps);
-    const { programDoc } = getModMongoDoc(props, ctx.emit);
+    const { adkData } = getModAdk(props, ctx.emit, 'team');
+    const programDoc = getModMongoDoc(props, ctx.emit);
     //   const presets = reactive({
     //     group: ['Setup', 'Project', 'Screening', 'Internship'],
     //     required: ['Creator requires this activity', 'Yes', 'No'],
@@ -130,7 +135,7 @@ export default defineComponent({
     return {
       adkData,
       maxTeamMemberItems,
-      ...createLoader(programDoc.value.save, 'Saved Successfully', 'Could not save at this time')
+      ...loading(programDoc.value.save, 'Saved Successfully', 'Could not save at this time')
     };
   }
 });

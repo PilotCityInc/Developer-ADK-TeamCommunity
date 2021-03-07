@@ -10,17 +10,18 @@
       <template #[`item.avatar`]>
         <v-avatar size="32"><img src="https://picsum.photos/510/300?random" /></v-avatar>
       </template>
+      <template #[`item.name`]="{ item }"> {{ item.firstName }} {{ item.lastName }} </template>
       <template #[`item.access`]="{ item }">
         {{ isOwner(item) ? 'Owner' : 'Member' }}
       </template>
-      <template v-if="viewer.data.id === teamDoc.data.owner" #[`item.action`]="{ item }">
+      <template v-if="viewer.data._id.equals(teamDoc.data.owner)" #[`item.action`]="{ item }">
         <v-btn
           v-if="!isOwner(item)"
           x-small
           outlined
           depressed
           :ripple="false"
-          @click="(removeMemberDialog = true), (selectedMember = item.data.id)"
+          @click="(removeMemberDialog = true), (selectedMember = item)"
           ><v-icon x-small left> mdi-close-circle </v-icon>Remove</v-btn
         >
 
@@ -74,11 +75,10 @@
           <div class="pl-12 pr-12 mt-4">
             <v-select
               v-model="selectedMember"
-              class=""
               hide-details
               :items="teamMembersExceptOwner"
-              :item-value="'data.id'"
-              :item-text="'data.name'"
+              :item-text="data => `${data.firstName} ${data.lastName}`"
+              :item-value="data => data"
               outlined
               rounded
               x-large
@@ -132,21 +132,21 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const state = reactive({
-      selectedMember: null as null | number,
+      selectedMember: null as null | Record<string, any>,
       removeMemberDialog: false,
       changeOwnerDialog: false
     });
-    const isOwner = (item: Record<'data', Record<string, any>>) => {
-      return item.data.id === props.teamDoc.data.owner;
+    const isOwner = (item: Record<string, any>) => {
+      return item._id.equals(props.teamDoc.data.owner);
     };
     const tableHeaders = computed(() => {
       const headers = [
         { text: '', align: 'start', value: 'avatar', width: '5%' },
-        { text: 'Name', align: 'start', value: 'data.name', width: '50%' },
+        { text: 'Name', align: 'start', value: 'name', width: '50%' },
         { text: 'Access', align: 'start', value: 'access', sortable: false, width: '20%' },
         { text: 'Action', align: 'start', value: 'action', sortable: false, width: '25%' }
       ];
-      if (isOwner(props.viewer)) return headers;
+      if (props.viewer.data._id.equals(props.teamDoc.data.owner)) return headers;
       return headers.filter(column => column.value !== 'action');
     });
     const teamMembers = computed(() => {
@@ -160,13 +160,13 @@ export default defineComponent({
       });
     });
     const removeMember = () => {
-      ctx.emit('removeMember', state.selectedMember);
+      ctx.emit('removeMember', state.selectedMember!._id);
       state.removeMemberDialog = false;
       state.selectedMember = null;
     };
     const changeOwner = () => {
       if (state.selectedMember) {
-        ctx.emit('changeOwner', state.selectedMember);
+        ctx.emit('changeOwner', state.selectedMember._id);
         state.changeOwnerDialog = false;
         state.selectedMember = null;
       }

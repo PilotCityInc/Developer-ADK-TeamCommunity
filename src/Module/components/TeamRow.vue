@@ -2,16 +2,34 @@
   <div class="module-default__team-row mb-3 mt-3">
     <div>
       <v-dialog v-model="joinTeamDialog" persistent max-width="450px">
-        <template #activator="{ on, attrs }">
+        <template #activator>
+          <v-tooltip v-if="numMembers >= maxTeamMembers" top>
+            <template #activator="{ on }">
+              <div v-on="on">
+                <v-btn
+                  :ripple="false"
+                  rounded
+                  depressed
+                  small
+                  outlined
+                  class="module-default__team-buttons mr-3 font-weight-black"
+                  disabled
+                  @click="joinTeamDialog = true"
+                  >{{ team.data.name }}</v-btn
+                >
+              </div>
+            </template>
+            <span>Team is full</span>
+          </v-tooltip>
           <v-btn
-            v-bind="attrs"
+            v-if="numMembers < maxTeamMembers"
             :ripple="false"
             rounded
             depressed
             small
             outlined
             class="module-default__team-buttons mr-3 font-weight-black"
-            v-on="on"
+            @click="joinTeamDialog = true"
             >{{ team.data.name }}</v-btn
           >
         </template>
@@ -27,8 +45,8 @@
             <div class="d-flex flex-column justify-center">
               <div class="d-flex flex-row justify-center mt-6">
                 <v-text-field
-                  class="justify-center ma-2"
                   v-model="password"
+                  class="justify-center ma-2"
                   x-large
                   :error-messages="error"
                   rounded
@@ -53,7 +71,7 @@
     </div>
     <v-avatar
       v-for="member in team.data.members"
-      :key="member.data.name"
+      :key="member.firstName + member.lastName"
       class="module-default__team-avatar ml-1 mr-1"
       size="28"
       ><img src="https://picsum.photos/510/300?random"
@@ -62,7 +80,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, toRefs } from '@vue/composition-api';
+import { defineComponent, PropType, reactive, toRefs, computed } from '@vue/composition-api';
 import { TeamDoc } from '../types';
 
 export default defineComponent({
@@ -71,6 +89,10 @@ export default defineComponent({
     team: {
       required: true,
       type: Object as PropType<TeamDoc>
+    },
+    maxTeamMembers: {
+      required: true,
+      type: Number
     }
   },
   setup(props, ctx) {
@@ -80,10 +102,11 @@ export default defineComponent({
       error: ''
     });
     const joinTeam = () => {
-      if (state.password === props.team.data.password) ctx.emit('joinTeam', props.team);
+      if (state.password === props.team.data.password) ctx.emit('joinTeam', props.team.data._id);
       else state.error = 'Incorrect password! Please try again!';
     };
-    return { joinTeam, ...toRefs(state) };
+    const numMembers = computed(() => props.team.data.members.length);
+    return { joinTeam, numMembers, ...toRefs(state) };
   }
 });
 </script>

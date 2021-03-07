@@ -44,15 +44,15 @@
     />
     <div class="module-edit__container">
       <!-- Viewer is not a member of a team -->
-      <div v-if="!teamDoc">
-        <JoinTeam :teams="teams" @joinTeam="joinTeam" />
+      <div v-if="!teamDocument">
+        <JoinTeam :teams="teams" :max-team-members="adkData.maxTeamMembers" @joinTeam="joinTeam" />
         <CreateTeam @createTeam="createTeam" />
       </div>
       <!-- Viewer is a member of a team -->
       <Team
-        v-if="teamDoc"
-        :viewer="user"
-        :teamDoc="teamDoc"
+        v-if="teamDocument"
+        :viewer="studentDocument"
+        :team-doc="teamDocument"
         @changeOwner="changeOwner"
         @removeMember="removeMember"
         @changePassword="changePassword"
@@ -66,31 +66,15 @@
   </v-container>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs, PropType } from '@vue/composition-api';
+import { MongoDoc } from 'pcv4lib/src/types';
+import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
+import { Db } from 'mongodb';
+import { ObjectId } from 'bson';
 import Instruct from './ModuleInstruct.vue';
 import CreateTeam from './CreateTeam.vue';
 import JoinTeam from './JoinTeam.vue';
 import Team from './Team.vue';
-import { TeamDoc } from '../types';
-
-const dummyTeams = new Array(35).fill().map((e, i) => {
-  return {
-    data: {
-      id: i,
-      owner: 1,
-      name: `Team ${i}`,
-      password: '123',
-      members: [
-        {
-          data: {
-            id: 1,
-            name: 'Team member 1'
-          }
-        }
-      ]
-    }
-  };
-});
 
 export default defineComponent({
   name: 'ModuleDefault',
@@ -100,124 +84,138 @@ export default defineComponent({
     CreateTeam,
     Team
   },
-  setup() {
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    },
+    teamDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc>,
+      default: () => {}
+    },
+    studentDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc>,
+      default: () => {}
+    },
+    db: {
+      required: false,
+      type: Object as PropType<Db>,
+      default: () => {}
+    }
+  },
+  setup(props, ctx) {
     const state = reactive({
       setupInstructions: {
         description: '',
         instructions: ['', '', '']
       },
       showInstructions: true,
-      teams: dummyTeams,
-      user: {
-        data: {
-          id: 2,
-          name: 'me',
-          team: null as null | number
-        }
-      },
-      teamDoc: null as null | TeamDoc
+      teams: [] as MongoDoc[],
+      programDoc: null as null | MongoDoc,
+      teamDocument: null as null | MongoDoc,
+      studentDocument: null as null | MongoDoc
     });
 
-    state.teams.unshift({
-      data: {
-        id: 1,
-        owner: 3,
-        name: `Team Yeezy`,
-        password: '123',
-        members: [
-          {
-            data: {
-              id: 1,
-              name: 'Team member 1'
-            }
-          },
-          {
-            data: {
-              id: 3,
-              name: 'kanye'
-            }
-          },
-          {
-            data: {
-              id: 4,
-              name: 'travis'
+    const { adkData } = getModAdk(props, ctx.emit, 'team');
+
+    state.programDoc = getModMongoDoc(props, ctx.emit);
+    if (props.teamDoc)
+      state.teamDocument = getModMongoDoc(props, ctx.emit, {}, 'teamDoc', 'inputTeamDoc');
+    if (props.studentDoc)
+      state.studentDocument = getModMongoDoc(props, ctx.emit, {}, 'studentDoc', 'inputStudentDoc');
+
+    const fetchTeams = async () => {
+      state.teams = await props.db
+        .collection('ProgramTeam')
+        .find({ programId: props.value!.data._id })
+        .toArray();
+    };
+    fetchTeams();
+
+    const joinTeam = async (_id: ObjectId) => {
+      props.db.collection('ProgramTeam').updateOne(
+        { _id },
+        {
+          $push: {
+            members: {
+              _id: state.studentDocument!.data._id,
+              firstName: state.studentDocument!.data.firstName,
+              lastName: state.studentDocument!.data.lastName
             }
           }
-        ]
-      }
-    });
-
-    const joinTeam = (team: TeamDoc) => {
-      team.data.members.push(state.user);
-      state.user.data.team = team.data.id;
-      state.teamDoc = team;
-    };
-
-    const createTeam = (name: string, password: string) => {
-      const id = Math.floor(Math.random() * 100 + 42);
-      const team = {
-        data: {
-          id,
-          owner: state.user.data.id,
-          name,
-          password,
-          members: [
-            {
-              data: {
-                id: 3,
-                name: 'my other teammate'
-              }
-            },
-            {
-              data: {
-                id: 4,
-                name: 'my teammate'
-              }
-            }
-          ]
         }
-      };
-      state.teams.unshift(team);
-      joinTeam(team);
+      );
+      const team = await props.db.collection('ProgramTeam').findOne({ _id });
+      state.studentDocument!.data.team = _id;
+      state.studentDocument!.update();
+      state.teamDocument = team;
     };
 
-    const removeMember = (id: number) => {
-      state.teamDoc.data.members.splice(
-        state.teamDoc.data.members.findIndex(member => {
-          return member.data.id === id;
+    const createTeam = async (name: string, password: string) => {
+      const team = {
+        owner: state.studentDocument!.data._id,
+        name,
+        password,
+        members: []
+      };
+      const { insertedId } = await props.db.collection('ProgramTeam').insertOne(team);
+      joinTeam(insertedId);
+    };
+
+    const removeMember = (_id: ObjectId) => {
+      state.teamDocument!.data.members.splice(
+        state.teamDocument!.data.members.findIndex(member => {
+          return member._id.equals(_id);
         }),
         1
       );
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $pull: { members: { _id } } });
     };
 
-    const changeOwner = (id: number) => {
-      state.teamDoc.data.owner = id;
+    const changeOwner = (_id: ObjectId) => {
+      state.teamDocument!.data.owner = _id;
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $set: { owner: _id } });
     };
 
     const changePassword = (password: string) => {
-      state.teamDoc.data.password = password;
+      state.teamDocument!.data.password = password;
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $set: { password } });
     };
 
     const renameTeam = (name: string) => {
-      state.teamDoc.data.name = name;
+      state.teamDocument!.data.name = name;
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $set: { name } });
     };
 
-    const leaveTeam = (viewerId: number, newOwnerId?: number) => {
+    const leaveTeam = (viewerId: ObjectId, newOwnerId?: ObjectId) => {
       if (newOwnerId) changeOwner(newOwnerId);
       removeMember(viewerId);
       // Remove team if empty
-      if (state.teamDoc.data.members.length === 0)
+      if (state.teamDocument!.data.members.length === 0) {
         state.teams.splice(
           state.teams.findIndex(team => {
-            return team.data.id === state.teamDoc.data.id;
+            return team.data._id === state.teamDocument!.data._id;
           }),
           1
         );
-      state.user.data.team = null;
-      state.teamDoc = null;
+        props.db.collection('ProgramTeam').deleteOne({ _id: state.teamDocument!.data._id });
+      }
+      state.studentDocument!.data.team = null;
+      state.teamDocument = null;
     };
 
     return {
+      adkData,
       ...toRefs(state),
       joinTeam,
       createTeam,

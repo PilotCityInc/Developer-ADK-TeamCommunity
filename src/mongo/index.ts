@@ -2,8 +2,8 @@ import { computed, reactive } from '@vue/composition-api';
 import { MongoClient } from 'mongodb';
 import { Stitch, RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
-const uri = 'mongodb://root:password@mongodb:27017';
-const dbName = 'Primary';
+const uri = 'mongodb://localhost:27017/pilotcity';
+const dbName = 'PilotCity';
 
 export const state: {
   dbType: 'development' | 'plugin';

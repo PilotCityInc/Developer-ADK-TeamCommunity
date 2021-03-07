@@ -1,14 +1,12 @@
 export interface MongoDoc {
-  data: {
-    adks: Record<string, any>[];
-  };
-  save: () => Promise<any>;
+  data: Record<string, any>;
+  update: () => Promise<any>;
   changeStream: any;
 }
 
 export interface TeamDoc {
   data: {
-    id: number;
+    _id: number;
     owner: number;
     password: string;
     name: string;

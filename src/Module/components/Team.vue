@@ -4,9 +4,9 @@
       <div class="headline font-weight-black mb-3">{{ teamDoc.data.name }}</div>
       <ManageTable
         class="module-default__table-view"
-        :teamDoc="teamDoc"
-        v-on="$listeners"
+        :team-doc="teamDoc"
         :viewer="viewer"
+        v-on="$listeners"
       ></ManageTable>
     </div>
 
@@ -77,11 +77,11 @@
 
       <div class="module-default__log-text">
         <v-text-field
+          v-model="newTeamName"
           rounded
           class="module-default__text-field"
           label="Rename team name"
           :placeholder="teamDoc.data.name"
-          v-model="newTeamName"
           outlined
         ></v-text-field>
 
@@ -148,8 +148,8 @@
                 v-if="viewerIsOwner && teamMembers.length > 0"
                 v-model="selectedMember"
                 :items="teamMembers"
-                :item-text="'data.name'"
-                :item-value="'data.id'"
+                :item-text="data => `${data.firstName} ${data.lastName}`"
+                :item-value="data => data"
                 class=""
                 hide-details
                 outlined
@@ -175,7 +175,7 @@
                 :dark="selectedMember !== null || teamMembers.length < 1 || !viewerIsOwner"
                 rounded
                 depressed
-                :disabled="viewerIsOwner && !selectedMember && teamMembers.length > 1"
+                :disabled="viewerIsOwner && !selectedMember && teamMembers.length >= 1"
                 @click="leaveTeam"
                 ><v-icon left>mdi-hand-peace</v-icon>Leave Team</v-btn
               >
@@ -188,7 +188,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, PropType, computed } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs, computed } from '@vue/composition-api';
 import ManageTable from './ManageTable.vue';
 import { TeamDoc } from '../types';
 
@@ -211,18 +211,18 @@ export default defineComponent({
       leaveTeamDialog: false,
       changePasswordDialog: false,
       newTeamName: '',
-      selectedMember: null as null | number,
+      selectedMember: null as null | Record<string, any>,
       password: props.teamDoc.data.password,
       showPassword: false
     });
 
     const viewerIsOwner = computed(() => {
-      return props.viewer.data.id === props.teamDoc.data.owner;
+      return props.viewer.data._id.equals(props.teamDoc.data.owner);
     });
 
     const teamMembers = computed(() => {
       return props.teamDoc.data.members.filter(member => {
-        return member.data.id !== props.teamDoc.data.owner;
+        return member._id !== props.teamDoc.data.owner;
       });
     });
 
@@ -240,7 +240,8 @@ export default defineComponent({
 
     const leaveTeam = () => {
       if (viewerIsOwner.value && !state.selectedMember && teamMembers.value.length > 1) return;
-      ctx.emit('leaveTeam', props.viewer.data.id, state.selectedMember);
+      const newOwner = state.selectedMember ? state.selectedMember._id : null;
+      ctx.emit('leaveTeam', props.viewer.data._id, newOwner);
       state.leaveTeamDialog = false;
     };
 
