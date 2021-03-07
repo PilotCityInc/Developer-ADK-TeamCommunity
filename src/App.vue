@@ -3,7 +3,7 @@
     <Module
       v-model="programDocStub"
       :db="db"
-      :team-doc="null"
+      :team-doc="teamDoc"
       :student-doc="studentDoc"
       @inputTeamDoc="teamDoc = $event"
       @inputStudentDoc="studentDoc = $event"
@@ -131,26 +131,26 @@ export default defineComponent({
       },
       changeStream: {}
     });
-
+    const myTeamOwner = new ObjectId(3);
     const teamDoc: Ref<MongoDoc> = ref({
       data: {
         name: 'Team Cool',
         _id: new ObjectId(1),
-        owner: 3,
+        owner: myTeamOwner,
         password: '123',
         members: [
           {
-            _id: 1,
+            _id: new ObjectId(1),
             firstName: 'Team member 1',
             lastName: 'awesome'
           },
           {
-            _id: 3,
+            _id: myTeamOwner,
             firstName: 'kanye',
             lastName: 'east'
           },
           {
-            _id: 4,
+            _id: new ObjectId(4),
             firstName: 'travis',
             lastName: 'scott'
           }
