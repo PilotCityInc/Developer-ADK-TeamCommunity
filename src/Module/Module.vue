@@ -12,7 +12,7 @@
         rounded
         >00:00:00</v-btn
       > -->
-      <v-btn
+      <!-- <v-btn
         v-if="currentPage != 'preview'"
         class="module__navbar-button"
         outlined
@@ -31,7 +31,7 @@
         color="red"
         @click="currentPage = 'setup'"
         >Exit Preview</v-btn
-      >
+      > -->
 
       <!-- COMMENT OUT UNTIL VERSION WHERE CUSTOMIZABILITY IS ALLOWED -->
 
@@ -267,6 +267,13 @@ export default defineComponent({
       required: false,
       type: Object as PropType<Db>,
       default: () => {}
+    },
+    userType: {
+      required: true,
+      type: String
+      // participant: '',
+      // organizer: '',
+      // stakeholder: ''
     }
   },
   setup(props, ctx) {
@@ -281,6 +288,13 @@ export default defineComponent({
       subpages: ['Setup', 'Presets'],
       currentPage: 'Setup'
     });
+
+    if (props.userType === 'organizer') {
+      page.currentPage = 'setup';
+    } else {
+      page.currentPage = 'preview';
+    }
+
     const getComponent = computed(() => {
       return `module-${page.currentPage.toLowerCase()}`;
     });

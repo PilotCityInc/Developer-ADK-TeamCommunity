@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@vue/composition-api';
+import { defineComponent, PropType, reactive } from '@vue/composition-api';
 import { loading, getModAdk, getModMongoDoc } from 'pcv4lib/src';
 // import { Db } from 'mongodb';
 import Instruct from './ModuleInstruct.vue';
@@ -108,7 +108,7 @@ export default defineComponent({
 
     const { adkData } = getModAdk(props, ctx.emit, 'team');
     const programDoc = getModMongoDoc(props, ctx.emit);
-    //   const presets = reactive({
+    // const presets = reactive({
     //     group: ['Setup', 'Project', 'Screening', 'Internship'],
     //     required: ['Creator requires this activity', 'Yes', 'No'],
     //     lockOrder: ['Creator locked activity group and placement order', 'Yes', 'No'],
@@ -121,13 +121,13 @@ export default defineComponent({
     //       'No'
     //     ],
     //     items: ['1', '2', '3', '4', '5', '6', '7'],
-    //     endEarly: [
-    //       'Creator has not allowed participants to end early after this activity',
-    //       'Creator has allow end early option only at preset order placement',
-    //       'Yes',
-    //       'No'
-    //     ]
-    //   });
+    // endEarly: [
+    //   'Creator has not allowed participants to end early after this activity',
+    //   'Creator has allow end early option only at preset order placement',
+    //   'Yes',
+    //   'No'
+    //   ]
+    // });
     //   const setupInstructions = ref({
     //     description: '',
     //     instructions: ['', '', '']

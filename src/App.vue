@@ -2,6 +2,7 @@
   <v-app>
     <Module
       v-model="programDocStub"
+      :user-type="userTypeStub"
       :db="db"
       :team-doc="teamDoc"
       :student-doc="studentDoc"
@@ -132,6 +133,7 @@ export default defineComponent({
       changeStream: {}
     });
     const myTeamOwner = new ObjectId(3);
+    const userTypeStub = 'organizer';
     const teamDoc: Ref<MongoDoc> = ref({
       data: {
         name: 'Team Cool',
@@ -189,6 +191,7 @@ export default defineComponent({
       programDocStub,
       studentDoc,
       teamDoc,
+      userTypeStub,
       db
     };
   }
