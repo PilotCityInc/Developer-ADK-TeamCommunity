@@ -135,7 +135,7 @@ export default defineComponent({
     return {
       adkData,
       maxTeamMemberItems,
-      ...loading(programDoc.value.save, 'Saved Successfully', 'Could not save at this time')
+      ...loading(programDoc.value.update, 'Saved Successfully', 'Could not save at this time')
     };
   }
 });
