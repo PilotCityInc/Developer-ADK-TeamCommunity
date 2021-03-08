@@ -218,6 +218,7 @@ export default defineComponent({
         fetchTeams();
       }
       state.studentDocument!.data.team = null;
+      state.studentDocument!.update();
       state.teamDocument = null;
     };
 
