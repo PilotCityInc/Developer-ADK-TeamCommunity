@@ -12,8 +12,8 @@
         rounded
         >00:00:00</v-btn
       > -->
-      <!-- <v-btn
-        v-if="currentPage != 'preview'"
+      <v-btn
+        v-if="currentPage != 'preview' && userType === 'organizer'"
         class="module__navbar-button"
         outlined
         x-small
@@ -23,7 +23,7 @@
       >
 
       <v-btn
-        v-if="currentPage == 'preview'"
+        v-if="currentPage == 'preview' && userType === 'organizer'"
         class="module__navbar-button"
         dark
         x-small
@@ -31,7 +31,7 @@
         color="red"
         @click="currentPage = 'setup'"
         >Exit Preview</v-btn
-      > -->
+      >
 
       <!-- COMMENT OUT UNTIL VERSION WHERE CUSTOMIZABILITY IS ALLOWED -->
 
