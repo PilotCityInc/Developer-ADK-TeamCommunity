@@ -16,7 +16,8 @@
         v-if="currentPage != 'preview' && userType === 'organizer'"
         class="module__navbar-button"
         outlined
-        x-small
+        small
+        rounded
         depressed
         @click="currentPage = 'preview'"
         >Preview</v-btn
@@ -26,7 +27,8 @@
         v-if="currentPage == 'preview' && userType === 'organizer'"
         class="module__navbar-button"
         dark
-        x-small
+        small
+        rounded
         depressed
         color="red"
         @click="currentPage = 'setup'"
