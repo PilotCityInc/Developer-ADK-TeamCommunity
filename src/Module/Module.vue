@@ -14,7 +14,7 @@
       > -->
       <v-btn
         v-if="currentPage != 'preview' && userType === 'organizer'"
-        class="module__navbar-button"
+        class="module__navbar-button font-weight-bold"
         outlined
         small
         rounded
@@ -25,7 +25,7 @@
 
       <v-btn
         v-if="currentPage == 'preview' && userType === 'organizer'"
-        class="module__navbar-button"
+        class="module__navbar-button font-weight-bold"
         dark
         small
         rounded
