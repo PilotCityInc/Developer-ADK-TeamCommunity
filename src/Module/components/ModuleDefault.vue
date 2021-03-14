@@ -51,7 +51,7 @@
       <!-- Viewer is a member of a team -->
       <Team
         v-if="teamDocument"
-        :viewer="studentDocument"
+        :viewer="userDoc"
         :team-doc="teamDocument"
         @changeOwner="changeOwner"
         @removeMember="removeMember"
@@ -97,6 +97,11 @@ export default defineComponent({
     studentDoc: {
       required: false,
       type: Object as PropType<MongoDoc>,
+      default: () => {}
+    },
+    userDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc | null>,
       default: () => {}
     },
     db: {
@@ -145,9 +150,9 @@ export default defineComponent({
         {
           $push: {
             members: {
-              _id: state.studentDocument!.data._id,
-              firstName: state.studentDocument!.data.firstName,
-              lastName: state.studentDocument!.data.lastName
+              _id: props.userDoc?.data._id,
+              firstName: props.userDoc?.data.firstName,
+              lastName: props.userDoc?.data.lastName
             }
           }
         }
@@ -160,7 +165,7 @@ export default defineComponent({
 
     const createTeam = async (name: string, password: string) => {
       const team = {
-        owner: state.studentDocument!.data._id,
+        owner: props.userDoc?.data._id,
         name,
         password,
         members: []
