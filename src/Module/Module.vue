@@ -339,8 +339,10 @@ body {
 }
 </style>
 <script lang="ts">
-import { computed, reactive, ref, toRefs } from '@vue/composition-api';
+import { computed, reactive, ref, toRefs, PropType } from '@vue/composition-api';
 import '@/styles/module.scss';
+import { integer } from 'vee-validate/dist/rules';
+import { Collection } from 'mongodb';
 import * as Module from './components';
 
 export default {
@@ -352,40 +354,29 @@ export default {
     'module-presets': Module.Presets,
     'module-preview': Module.Default
   },
-  data: () => ({
-    events: [],
-    input: null,
-    nonce: 0
-  }),
-
-  computed: {
-    timeline() {
-      return this.events.slice().reverse();
+  props: {
+    programCollection: {
+      required: true,
+      type: Object as PropType<Collection>
+    },
+    programId: {
+      required: true,
+      type: String
+    },
+    maxMembers: {
+      required: true,
+      type: Number
+    },
+    teamName: {
+      required: true,
+      type: String
     }
   },
-
-  methods: {
-    comment() {
-      const time = new Date().toTimeString();
-      this.events.push({
-        id: this.nonce,
-        text: this.input,
-        time: time.replace(/:\d{2}\sGMT-\d{4}\s\((.*)\)/, (match, contents, offset) => {
-          return ` ${contents
-            .split(' ')
-            .map(v => v.charAt(0))
-            .join('')}`;
-        })
-      });
-      this.input = null;
-    }
-  },
-
   setup() {
     // ENTER ACTIVITY NAME BELOW
     const moduleName = ref('Team');
     const page = reactive({
-      subpages: ['Setup', 'Presets', 'Monitor'],
+      subpages: ['Setup', 'Presets'],
       currentPage: 'Setup'
     });
     const getComponent = computed(() => {
@@ -408,6 +399,33 @@ export default {
       instruct: ['']
     });
     const menu = ref(false);
+    const timelineData = reactive({
+      events: [] as {
+        id: number;
+        text: string;
+        time: string;
+      }[],
+      input: '',
+      nonce: 0
+    });
+    const timeline = computed(() => {
+      return timelineData.events.slice().reverse();
+    });
+    function comment() {
+      const time = new Date().toTimeString();
+      timelineData.events.push({
+        id: timelineData.nonce,
+        text: timelineData.input,
+        time: time.replace(/:\d{2}\sGMT-\d{4}\s\((.*)\)/, (match, contents) => {
+          return ` ${contents
+            .split(' ')
+            .map((v: string) => v.charAt(0))
+            .join('')}`;
+        })
+      });
+      timelineData.input = '';
+    }
+
     return {
       ...toRefs(color as any),
       ...toRefs(page as any),
@@ -415,7 +433,10 @@ export default {
       moduleName,
       menu,
       getComponent,
-      getColor
+      getColor,
+      ...toRefs(timelineData),
+      timeline,
+      comment
     };
   }
 };
