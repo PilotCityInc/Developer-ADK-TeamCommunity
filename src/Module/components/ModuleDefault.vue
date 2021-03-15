@@ -1,5 +1,5 @@
 <template>
-  <v-container class="module-default__container">
+  <v-container class="module-default pa-0">
     <div class="module-default__instructions">
       <v-expansion-panels v-model="showInstructions" class="module-default__instructions" flat>
         <v-expansion-panel>
@@ -9,7 +9,7 @@
             class="pa-0"
             @click="showInstructions = true"
           >
-            <template v-slot="{ open }">
+            <template #default="{ open }">
               <v-scroll-y-transition hide-on-leave>
                 <div v-if="!open" class="d-flex flex-column justify-center">
                   <v-icon color="grey lighten-2" class="d-flex justify-center">
@@ -43,146 +43,22 @@
       stream
     />
     <div class="module-edit__container">
-      <div class="module-default__manage-title text-h5 font-weight-black">Join</div>
-      <!--buttons for the  team -->
-      <div class="module-default__upper-body">
-        <div class="module-default__team">
-          <div class="module-default__team-row mb-3 mt-3">
-            <div>
-              <v-btn
-                :ripple="false"
-                rounded
-                depressed
-                small
-                dark
-                class="module-default__team-buttons mr-3"
-                >Team Yeezy</v-btn
-              >
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-          </div>
-          <div class="module-default__team-row mb-3 mt-3">
-            <div>
-              <v-btn
-                :ripple="false"
-                rounded
-                depressed
-                small
-                dark
-                class="module-default__team-buttons mr-3"
-                >Team Easy</v-btn
-              >
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-          </div>
-          <div class="module-default__team-row mb-3 mt-3">
-            <div>
-              <v-btn
-                :ripple="false"
-                rounded
-                depressed
-                small
-                dark
-                class="module-default__team-buttons mr-3"
-                >Team Peezy</v-btn
-              >
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-2 mr-2" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-            <div>
-              <v-avatar class="module-default__team-avatar ml-1 mr-1" size="28"
-                ><img
-                  src="https://media-exp1.licdn.com/dms/image/C5603AQEq9BL9NuOBAQ/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=XLeDuOV5B9rNOG4CrSQLh1sKeftfzBUwHd3M-y_CRKM"
-              /></v-avatar>
-            </div>
-          </div>
-        </div>
+      <!-- Viewer is not a member of a team -->
+      <div v-if="!teamDocument">
+        <JoinTeam :teams="teams" :max-team-members="adkData.maxTeamMembers" @joinTeam="joinTeam" />
+        <CreateTeam @createTeam="createTeam" />
       </div>
-      <div class="module-default__manage-title text-h5 font-weight-black mt-6">Create</div>
-      <div class="module-default__log-text mb-5 mt-5">
-        <v-text-field
-          class="module-default__text-field"
-          placeholder="Enter new team name"
-          outlined
-        ></v-text-field>
-        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
-          >Create Team</v-btn
-        >
-      </div>
-
-      <div class="module-default__manage">
-        <div class="module-default__manage-title text-h5 font-weight-black mb-3">Manage</div>
-        <ManageTable class="module-default__table-view"></ManageTable>
-      </div>
-
-      <!-- <div class="module-default__new">
-        <div class="module-default__manage-new text-h5 font-weight-black">New</div>
-        <NewTable class="module-default__table-view"></NewTable>
-      </div> -->
-      <div class="module-default__manage-title text-h5 font-weight-black mb-3">Rename</div>
-      <div class="module-default__log-text mb-5 mt-5">
-        <v-text-field
-          class="module-default__text-field"
-          placeholder="Rename team name"
-          outlined
-        ></v-text-field>
-        <v-btn class="module-default__log-btn" depressed outlined :ripple="false"
-          >Rename Team</v-btn
-        >
-      </div>
-
-      <v-btn large color="red" dark depressed>Leave Team</v-btn>
-
+      <!-- Viewer is a member of a team -->
+      <Team
+        v-if="teamDocument"
+        :viewer="userDoc"
+        :team-doc="teamDocument"
+        @changeOwner="changeOwner"
+        @removeMember="removeMember"
+        @changePassword="changePassword"
+        @renameTeam="renameTeam"
+        @leaveTeam="leaveTeam"
+      />
       <!-- ENTER CONTENT HERE -->
       <!-- DESIGN YOUR ACTIVITY HERE / COMMENT OUT WHEN YOU'VE STARTED DESIGNING -->
       <!-- <div class="module-default__none">Design your activity here</div> -->
@@ -190,31 +66,180 @@
   </v-container>
 </template>
 <script lang="ts">
-import { ref } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs, PropType } from '@vue/composition-api';
+import { MongoDoc } from 'pcv4lib/src/types';
+import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
+import { Db } from 'mongodb';
+import { ObjectId } from 'bson';
 import Instruct from './ModuleInstruct.vue';
-import ManageTable from './ManageTable.vue';
-// import NewTable from './NewTable.vue';
+import CreateTeam from './CreateTeam.vue';
+import JoinTeam from './JoinTeam.vue';
+import Team from './Team.vue';
 
-export default {
+export default defineComponent({
   name: 'ModuleDefault',
   components: {
     Instruct,
-    ManageTable
-    // NewTable
+    JoinTeam,
+    CreateTeam,
+    Team
   },
-  apollo: {},
-  data() {
-    const setupInstructions = ref({
-      description: '',
-      instructions: ['', '', '']
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    },
+    teamDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc>,
+      default: () => {}
+    },
+    studentDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc>,
+      default: () => {}
+    },
+    userDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc | null>,
+      default: () => {}
+    },
+    db: {
+      required: false,
+      type: Object as PropType<Db>,
+      default: () => {}
+    }
+  },
+  setup(props, ctx) {
+    const state = reactive({
+      setupInstructions: {
+        description: '',
+        instructions: ['', '', '']
+      },
+      showInstructions: true,
+      teams: [] as MongoDoc[],
+      programDoc: null as null | MongoDoc,
+      teamDocument: null as null | MongoDoc,
+      studentDocument: null as null | MongoDoc
     });
-    const showInstructions = ref(true);
+
+    const { adkData } = getModAdk(props, ctx.emit, 'team');
+
+    state.programDoc = getModMongoDoc(props, ctx.emit);
+    if (props.teamDoc)
+      state.teamDocument = getModMongoDoc(props, ctx.emit, {}, 'teamDoc', 'inputTeamDoc');
+    if (props.studentDoc)
+      state.studentDocument = getModMongoDoc(props, ctx.emit, {}, 'studentDoc', 'inputStudentDoc');
+
+    const fetchTeams = async () => {
+      const teams = await props.db
+        .collection('ProgramTeam')
+        .find({ programId: props.value!.data._id })
+        .toArray();
+      state.teams = teams.map(team => {
+        return {
+          data: team
+        };
+      });
+    };
+    fetchTeams();
+
+    const joinTeam = async (_id: ObjectId) => {
+      props.db.collection('ProgramTeam').updateOne(
+        { _id },
+        {
+          $push: {
+            members: {
+              _id: props.userDoc?.data._id,
+              firstName: props.userDoc?.data.firstName,
+              lastName: props.userDoc?.data.lastName
+            }
+          }
+        }
+      );
+      const team = await props.db.collection('ProgramTeam').findOne({ _id });
+      state.studentDocument!.data.team = _id;
+      state.studentDocument!.update();
+      state.teamDocument = { data: team };
+    };
+
+    const createTeam = async (name: string, password: string) => {
+      const team = {
+        owner: props.userDoc?.data._id,
+        name,
+        password,
+        members: []
+      };
+      const { insertedId } = await props.db.collection('ProgramTeam').insertOne(team);
+      joinTeam(insertedId);
+      fetchTeams();
+    };
+
+    const removeMember = (_id: ObjectId) => {
+      state.teamDocument!.data.members.splice(
+        state.teamDocument!.data.members.findIndex(member => {
+          return member._id.equals(_id);
+        }),
+        1
+      );
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $pull: { members: { _id } } });
+    };
+
+    const changeOwner = (_id: ObjectId) => {
+      state.teamDocument!.data.owner = _id;
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $set: { owner: _id } });
+    };
+
+    const changePassword = (password: string) => {
+      state.teamDocument!.data.password = password;
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $set: { password } });
+    };
+
+    const renameTeam = (name: string) => {
+      state.teamDocument!.data.name = name;
+      props.db
+        .collection('ProgramTeam')
+        .updateOne({ _id: state.teamDocument!.data._id }, { $set: { name } });
+    };
+
+    const leaveTeam = (viewerId: ObjectId, newOwnerId?: ObjectId) => {
+      if (newOwnerId) changeOwner(newOwnerId);
+      removeMember(viewerId);
+      // Remove team if empty
+      if (state.teamDocument!.data.members.length === 0) {
+        state.teams.splice(
+          state.teams.findIndex(team => {
+            return team.data._id === state.teamDocument!.data._id;
+          }),
+          1
+        );
+        props.db.collection('ProgramTeam').deleteOne({ _id: state.teamDocument!.data._id });
+        fetchTeams();
+      }
+      state.studentDocument!.data.team = null;
+      state.studentDocument!.update();
+      state.teamDocument = null;
+    };
+
     return {
-      setupInstructions,
-      showInstructions
+      adkData,
+      ...toRefs(state),
+      joinTeam,
+      createTeam,
+      removeMember,
+      changeOwner,
+      changePassword,
+      renameTeam,
+      leaveTeam
     };
   }
-};
+});
 </script>
 
 <style lang="scss">

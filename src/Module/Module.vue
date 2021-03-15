@@ -2,7 +2,7 @@
   <!--  TODO: make the inputs into actual components -->
   <v-container class="module">
     <div class="module__navbar">
-      <v-btn
+      <!-- <v-btn
         v-if="currentPage == 'preview'"
         dark
         class="module__navbar-button"
@@ -11,29 +11,33 @@
         color="grey lighten-1"
         rounded
         >00:00:00</v-btn
-      >
+      > -->
       <v-btn
-        v-if="currentPage != 'preview'"
-        class="module__navbar-button"
+        v-if="currentPage != 'preview' && userType === 'organizer'"
+        class="module__navbar-button font-weight-bold"
         outlined
-        x-small
+        small
+        rounded
         depressed
         @click="currentPage = 'preview'"
         >Preview</v-btn
       >
 
       <v-btn
-        v-if="currentPage == 'preview'"
-        class="module__navbar-button"
+        v-if="currentPage == 'preview' && userType === 'organizer'"
+        class="module__navbar-button font-weight-bold"
         dark
-        x-small
+        small
+        rounded
         depressed
         color="red"
         @click="currentPage = 'setup'"
         >Exit Preview</v-btn
       >
 
-      <v-menu v-if="currentPage != 'preview'" offset-y left>
+      <!-- COMMENT OUT UNTIL VERSION WHERE CUSTOMIZABILITY IS ALLOWED -->
+
+      <!-- <v-menu v-if="currentPage != 'preview'" offset-y left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-bind="attrs" small icon class="module__navbar-button" v-on="on">
             <v-icon color="grey lighten-1">mdi-cog</v-icon></v-btn
@@ -60,7 +64,7 @@
             swatches-max-height="100"
           ></v-color-picker>
         </v-card>
-      </v-menu>
+      </v-menu> -->
     </div>
     <div class="module__container" :style="{ 'border-color': getColor }">
       <div class="module__title">
@@ -68,9 +72,9 @@
           <v-icon light x-large :color="selectedColor">mdi-account-supervisor-circle</v-icon>
         </div>
         <div class="module__header text-md-h5 text-sm-subtitle-1 d-flex align-center">
-          <input :value="moduleName" type="text" class="module__header-text" />
+          <input disabled :value="moduleName" type="text" class="module__header-text" />
           <v-chip-group class="module__header-chips"
-            ><v-chip disabled dark small>Preset Tags</v-chip>
+            ><v-chip color="white" disabled dark x-small>Preset Tags</v-chip>
           </v-chip-group>
         </div>
       </div>
@@ -101,14 +105,23 @@
         </div>
         <div class="module__page">
           <keep-alive>
-            <component :is="getComponent" />
+            <component
+              :is="getComponent"
+              v-model="programDoc"
+              :db="db"
+              :team-doc="teamDoc"
+              :student-doc="studentDoc"
+              :user-doc="userDoc"
+              @inputTeamDoc="$emit('inputTeamDoc', $event)"
+              @inputStudentDoc="$emit('inputStudentDoc', $event)"
+            />
           </keep-alive>
         </div>
       </div>
     </div>
     <!-- TIMELINE START -->
 
-    <template>
+    <!-- <template>
       <v-container v-if="currentPage == 'preview'" style="max-width: 675px">
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
@@ -159,28 +172,6 @@
             >
           </v-card>
         </v-menu>
-
-        <!-- ALL STAKEHOLDERS-->
-        <!-- <v-btn small disabled outlined depressed
-          ><v-icon left>mdi-message-reply-text</v-icon>Chat with all stakeholders</v-btn
-        > -->
-
-        <!-- FOR EMPLOYER ORGANIZERS -->
-        <!-- <v-btn disabled outlined depressed
-          ><v-icon left>mdi-message-reply-text</v-icon>Comment on student participant's
-          activity</v-btn
-        > -->
-        <!-- FOR STUDENT PARTICIPANTS: Ability to view and reply to employer, teacher, school and parent stakeholder comments -->
-        <!-- <v-btn small disabled outlined depressed
-          ><v-icon left>mdi-message-reply-text</v-icon>Chat with stakeholders and your
-          organizers</v-btn
-        > -->
-
-        <!-- FOR TEACHER, SCHOOL OR PARENT STAKEHOLDERS: Ability to view and reply to student and employer comments -->
-        <!-- <v-btn disabled outlined depressed
-          ><v-icon left>mdi-message-reply-text</v-icon>Comment on student participant's
-          activity</v-btn
-        > -->
         <v-timeline dense clipped>
           <v-timeline-item fill-dot class="white--text mb-12" color="pink" large>
             <template v-slot:icon>
@@ -221,13 +212,11 @@
                 <v-col cols="7" v-text="event.text"></v-col>
                 <v-col class="text-right" cols="3" v-text="event.time"></v-col>
                 <v-col class="text-right" cols="2">
-                  <!-- POSTER, STUDENT PARTICIPANT OR ORGANIZER CAN DELETE POSTS -->
                   <v-btn small class="module__trash" icon
                     ><v-icon small color="grey" class="module__trash"
                       >mdi-trash-can-outline</v-icon
                     ></v-btn
                   >
-                  <!-- ANYONE CAN FLAG COMMENTS -->
                   <v-btn small class="module__trash" icon
                     ><v-icon small color="grey" class="module__trash">mdi-flag</v-icon></v-btn
                   ></v-col
@@ -237,70 +226,146 @@
               <v-btn class="" icon><v-icon color="grey lighten-2">mdi-thumb-up</v-icon></v-btn>
 
               <v-btn class="" icon><v-icon color="grey lighten-2">mdi-thumb-down</v-icon></v-btn>
-              <!-- 
-              <v-btn x-small outlined depressed class="mx-0">Reply</v-btn>
-
-              <v-btn small class="" icon><v-icon color="grey lighten-2">mdi-flag</v-icon></v-btn> -->
             </v-timeline-item>
           </v-slide-x-transition>
-
-          <!-- <v-timeline-item class="mb-6" hide-dot>
-            <span>TODAY</span>
-          </v-timeline-item>
-
-          <v-timeline-item class="mb-4" color="grey" icon-color="grey lighten-2" small>
-            <v-row justify="space-between">
-              <v-col cols="7"> This order was archived. </v-col>
-              <v-col class="text-right" cols="5"> 15:26 EDT </v-col>
-            </v-row>
-          </v-timeline-item>
-
-          <v-timeline-item class="mb-4" small>
-            <v-row justify="space-between">
-              <v-col cols="7">
-                <v-chip class="white--text ml-0" color="purple" label small> APP </v-chip>
-                Digital Downloads fulfilled 1 item.
-              </v-col>
-              <v-col class="text-right" cols="5"> 15:25 EDT </v-col>
-            </v-row>
-          </v-timeline-item>
-
-          <v-timeline-item class="mb-4" color="grey" small>
-            <v-row justify="space-between">
-              <v-col cols="7">
-                Order confirmation email was sent to John Leider (john@vuetifyjs.com).
-              </v-col>
-              <v-col class="text-right" cols="5"> 15:25 EDT </v-col>
-            </v-row>
-          </v-timeline-item>
-
-          <v-timeline-item class="mb-4" hide-dot>
-            <v-btn class="mx-0"> Resend Email </v-btn>
-          </v-timeline-item>
-
-          <v-timeline-item class="mb-4" color="grey" small>
-            <v-row justify="space-between">
-              <v-col cols="7">
-                A $15.00 USD payment was processed on PayPal Express Checkout
-              </v-col>
-              <v-col class="text-right" cols="5"> 15:25 EDT </v-col>
-            </v-row>
-          </v-timeline-item>
-
-          <v-timeline-item color="grey" small>
-            <v-row justify="space-between">
-              <v-col cols="7">
-                John Leider placed this order on Online Store (checkout #1937432132572).
-              </v-col>
-              <v-col class="text-right" cols="5"> 15:25 EDT </v-col>
-            </v-row>
-          </v-timeline-item> -->
         </v-timeline>
       </v-container>
-    </template>
+    </template> -->
     <!-- TIMELINE END -->
   </v-container>
 </template>
+
+<script lang="ts">
+import { computed, reactive, ref, toRefs, defineComponent, PropType } from '@vue/composition-api';
+import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
+import '@/styles/module.scss';
+import { Db } from 'mongodb';
+import { MongoDoc } from './types';
+import * as Module from './components';
+
+export default defineComponent({
+  name: 'ModuleName',
+  components: {
+    'module-monitor': Module.Monitor,
+    'module-setup': Module.Setup,
+    'module-presets': Module.Presets,
+    'module-preview': Module.Default
+  },
+  props: {
+    value: {
+      required: true,
+      type: Object as PropType<MongoDoc>
+    },
+    teamDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc | null>,
+      default: () => {}
+    },
+    studentDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc | null>,
+      default: () => {}
+    },
+    userDoc: {
+      required: false,
+      type: Object as PropType<MongoDoc | null>,
+      default: () => {}
+    },
+    db: {
+      required: false,
+      type: Object as PropType<Db>,
+      default: () => {}
+    },
+    userType: {
+      required: true,
+      type: String
+      // participant: '',
+      // organizer: '',
+      // stakeholder: ''
+    }
+  },
+  setup(props, ctx) {
+    const programDoc = getModMongoDoc(props, ctx.emit);
+    const defaultTeamProps = {
+      maxTeamMembers: 5
+    };
+    getModAdk(props, ctx.emit, 'team', defaultTeamProps);
+
+    const moduleName = ref('Team');
+    const page = reactive({
+      subpages: ['Setup', 'Presets'],
+      currentPage: 'Setup'
+    });
+
+    if (props.userType === 'organizer') {
+      page.currentPage = 'setup';
+    } else {
+      page.currentPage = 'preview';
+    }
+
+    const getComponent = computed(() => {
+      return `module-${page.currentPage.toLowerCase()}`;
+    });
+    const color = reactive({
+      pilotcityColors: [
+        ['#6eba80', '#3c9dcd', '#ea6764'],
+        ['#eda1bf', '#fec34b', '#bdbdbd'],
+        ['#ae90b0', '#f79961', '#000000']
+      ],
+      // ENTER ACTIVITY COLOR
+      selectedColor: '#eda1bf'
+    });
+    const getColor = computed(() => {
+      return color.selectedColor.substring(0, 7);
+    });
+    const config = ref({
+      description: '',
+      instruct: ['']
+    });
+    const menu = ref(false);
+    // timeline
+    const timelineData = reactive({
+      events: [] as {
+        id: number;
+        text: string;
+        time: string;
+      }[],
+      input: '',
+      nonce: 0
+    });
+    const timeline = computed(() => {
+      return timelineData.events.slice().reverse();
+    });
+    function comment() {
+      const time = new Date().toTimeString();
+      timelineData.events.push({
+        id: timelineData.nonce,
+        text: timelineData.input,
+        time: time.replace(/:\d{2}\sGMT-\d{4}\s\((.*)\)/, (match, contents) => {
+          return ` ${contents
+            .split(' ')
+            .map((v: string) => v.charAt(0))
+            .join('')}`;
+        })
+      });
+      timelineData.input = '';
+    }
+    return {
+      programDoc,
+      ...toRefs(color),
+      ...toRefs(page),
+      config,
+      moduleName,
+      menu,
+      getComponent,
+      getColor,
+      ...toRefs(timelineData),
+      timeline,
+      comment
+    };
+  }
+});
+</script>
 <style lang="scss">
 html,
 body {
@@ -338,106 +403,3 @@ body {
   }
 }
 </style>
-<script lang="ts">
-import { computed, reactive, ref, toRefs, PropType } from '@vue/composition-api';
-import '@/styles/module.scss';
-import { integer } from 'vee-validate/dist/rules';
-import { Collection } from 'mongodb';
-import * as Module from './components';
-
-export default {
-  name: 'ModuleName',
-
-  components: {
-    'module-monitor': Module.Monitor,
-    'module-setup': Module.Setup,
-    'module-presets': Module.Presets,
-    'module-preview': Module.Default
-  },
-  props: {
-    programCollection: {
-      required: true,
-      type: Object as PropType<Collection>
-    },
-    programId: {
-      required: true,
-      type: String
-    },
-    maxMembers: {
-      required: true,
-      type: Number
-    },
-    teamName: {
-      required: true,
-      type: String
-    }
-  },
-  setup() {
-    // ENTER ACTIVITY NAME BELOW
-    const moduleName = ref('Team');
-    const page = reactive({
-      subpages: ['Setup', 'Presets'],
-      currentPage: 'Setup'
-    });
-    const getComponent = computed(() => {
-      return `module-${page.currentPage.toLowerCase()}`;
-    });
-    const color = reactive({
-      pilotcityColors: [
-        ['#6eba80', '#3c9dcd', '#ea6764'],
-        ['#eda1bf', '#fec34b', '#bdbdbd'],
-        ['#ae90b0', '#f79961', '#000000']
-      ],
-      // ENTER ACTIVITY COLOR
-      selectedColor: '#6eba80'
-    });
-    const getColor = computed(() => {
-      return color.selectedColor.substring(0, 7);
-    });
-    const config = ref({
-      description: '',
-      instruct: ['']
-    });
-    const menu = ref(false);
-    const timelineData = reactive({
-      events: [] as {
-        id: number;
-        text: string;
-        time: string;
-      }[],
-      input: '',
-      nonce: 0
-    });
-    const timeline = computed(() => {
-      return timelineData.events.slice().reverse();
-    });
-    function comment() {
-      const time = new Date().toTimeString();
-      timelineData.events.push({
-        id: timelineData.nonce,
-        text: timelineData.input,
-        time: time.replace(/:\d{2}\sGMT-\d{4}\s\((.*)\)/, (match, contents) => {
-          return ` ${contents
-            .split(' ')
-            .map((v: string) => v.charAt(0))
-            .join('')}`;
-        })
-      });
-      timelineData.input = '';
-    }
-
-    return {
-      ...toRefs(color as any),
-      ...toRefs(page as any),
-      config,
-      moduleName,
-      menu,
-      getComponent,
-      getColor,
-      ...toRefs(timelineData),
-      timeline,
-      comment
-    };
-  }
-};
-</script>

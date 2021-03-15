@@ -3,8 +3,9 @@ networks:
   pdk:
     driver: bridge
 services:
-  microapp: #in container-based development
-    image: pilotcity/boiler
+  teamcommunity: #in container-based development
+    # image: pilotcity/boiler
+    build: .
     container_name: teamcommunity
     environment:
       - NODE_ENV=development
@@ -19,8 +20,8 @@ services:
       - 8001:8080
     stdin_open: true
     tty: true
-    command: ["yarn","run","serve"]
-    networks: 
+    command: ['yarn', 'run', 'serve']
+    networks:
       - pdk
   mongo: # creates mongodb srever
     image: juxsta/boilerdb
@@ -28,10 +29,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
-    networks: 
+    networks:
       - pdk
-    volumes: 
-    - ./db:/data/db
+    volumes:
+      - ./db:/data/db
   mongo-express: # mongodb web client
     image: mongo-express
     container_name: mongo-express
@@ -41,7 +42,7 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
       ME_CONFIG_MONGODB_SERVER: mongo
-    networks: 
-    - pdk
+    networks:
+      - pdk
     depends_on:
       - mongo
