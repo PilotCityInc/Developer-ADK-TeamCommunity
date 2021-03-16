@@ -42,7 +42,7 @@
       buffer-value="100"
       stream
     />
-    <div class="module-edit__container">
+    <div class="module-edit__container mt-12">
       <!-- Viewer is not a member of a team -->
       <div v-if="!teamDocument">
         <JoinTeam :teams="teams" :max-team-members="adkData.maxTeamMembers" @joinTeam="joinTeam" />
@@ -306,7 +306,7 @@ export default defineComponent({
 
   &__collapse-divider {
     margin-top: 15px;
-    margin-bottom: 75px;
+    // margin-bottom: 75px;
     margin-right: none;
     margin-left: none;
     padding-right: none;
