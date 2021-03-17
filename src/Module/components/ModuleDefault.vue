@@ -34,14 +34,7 @@
       </v-expansion-panels>
     </div>
 
-    <v-progress-linear
-      class="module-default__collapse-divider"
-      color="#dedede"
-      height="2"
-      value="100"
-      buffer-value="100"
-      stream
-    />
+    <v-progress-linear class="mt-3" color="#dedede" height="2" value="100" buffer-value="100" stream />
     <div class="module-edit__container mt-12">
       <!-- Viewer is not a member of a team -->
       <div v-if="!teamDocument">
