@@ -151,7 +151,7 @@ export default defineComponent({
   }
 
   &__reflection {
-    margin-left: auto;
+    // margin-left: auto;
     align-content: center;
   }
 
