@@ -235,7 +235,7 @@
 <script lang="ts">
 import { computed, reactive, ref, toRefs, defineComponent, PropType } from '@vue/composition-api';
 import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
-import '@/styles/module.scss';
+import '../styles/module.scss';
 import { Db } from 'mongodb';
 import { MongoDoc } from './types';
 import * as Module from './components';
