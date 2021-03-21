@@ -166,7 +166,8 @@ export default defineComponent({
         program_id: state.programDoc?.data._id,
         name,
         password,
-        members: []
+        members: [],
+        adks: []
       };
       const { insertedId } = await props.db.collection('ProgramTeam').insertOne(team);
       joinTeam(insertedId);
