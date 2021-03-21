@@ -34,7 +34,14 @@
       </v-expansion-panels>
     </div>
 
-    <v-progress-linear class="mt-3" color="#dedede" height="2" value="100" buffer-value="100" stream />
+    <v-progress-linear
+      class="mt-3"
+      color="#dedede"
+      height="2"
+      value="100"
+      buffer-value="100"
+      stream
+    />
     <div class="module-edit__container mt-12">
       <!-- Viewer is not a member of a team -->
       <div v-if="!teamDocument">
@@ -127,8 +134,7 @@ export default defineComponent({
     const fetchTeams = async () => {
       const teams = await props.db
         .collection('ProgramTeam')
-        .find({ programId: props.value!.data._id })
-        .toArray();
+        .find({ programId: state.programDoc._id });
       state.teams = teams.map(team => {
         return {
           data: team
@@ -138,7 +144,7 @@ export default defineComponent({
     fetchTeams();
 
     const joinTeam = async (_id: ObjectId) => {
-      props.db.collection('ProgramTeam').updateOne(
+      await props.db.collection('ProgramTeam').updateOne(
         { _id },
         {
           $push: {
@@ -151,38 +157,37 @@ export default defineComponent({
         }
       );
       const team = await props.db.collection('ProgramTeam').findOne({ _id });
-      state.studentDocument!.data.team = _id;
-      state.studentDocument!.update();
       state.teamDocument = { data: team };
     };
 
     const createTeam = async (name: string, password: string) => {
       const team = {
         owner: props.userDoc?.data._id,
+        program_id: state.programDoc?.data._id,
         name,
         password,
         members: []
       };
       const { insertedId } = await props.db.collection('ProgramTeam').insertOne(team);
       joinTeam(insertedId);
-      fetchTeams();
+      await fetchTeams();
     };
 
-    const removeMember = (_id: ObjectId) => {
+    const removeMember = async (_id: ObjectId) => {
       state.teamDocument!.data.members.splice(
         state.teamDocument!.data.members.findIndex(member => {
           return member._id.equals(_id);
         }),
         1
       );
-      props.db
+      await props.db
         .collection('ProgramTeam')
         .updateOne({ _id: state.teamDocument!.data._id }, { $pull: { members: { _id } } });
     };
 
-    const changeOwner = (_id: ObjectId) => {
+    const changeOwner = async (_id: ObjectId) => {
       state.teamDocument!.data.owner = _id;
-      props.db
+      await props.db
         .collection('ProgramTeam')
         .updateOne({ _id: state.teamDocument!.data._id }, { $set: { owner: _id } });
     };
@@ -201,9 +206,9 @@ export default defineComponent({
         .updateOne({ _id: state.teamDocument!.data._id }, { $set: { name } });
     };
 
-    const leaveTeam = (viewerId: ObjectId, newOwnerId?: ObjectId) => {
+    const leaveTeam = async (viewerId: ObjectId, newOwnerId?: ObjectId) => {
       if (newOwnerId) changeOwner(newOwnerId);
-      removeMember(viewerId);
+      await removeMember(viewerId);
       // Remove team if empty
       if (state.teamDocument!.data.members.length === 0) {
         state.teams.splice(
@@ -212,11 +217,9 @@ export default defineComponent({
           }),
           1
         );
-        props.db.collection('ProgramTeam').deleteOne({ _id: state.teamDocument!.data._id });
-        fetchTeams();
+        await props.db.collection('ProgramTeam').deleteOne({ _id: state.teamDocument!.data._id });
+        await fetchTeams();
       }
-      state.studentDocument!.data.team = null;
-      state.studentDocument!.update();
       state.teamDocument = null;
     };
 

@@ -196,11 +196,11 @@ export default defineComponent({
     });
     return {
       programDocStub,
-      studentDoc,
+      studentDoc: null,
       userDoc,
-      teamDoc,
+      teamDoc: null,
       userTypeStub,
-      db
+      db: null
     };
   }
 });
