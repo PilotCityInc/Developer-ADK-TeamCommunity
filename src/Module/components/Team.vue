@@ -15,6 +15,7 @@
 
       <div class="module-default__log-text mt-5 mb-5">
         <v-text-field
+          :readonly="userType === 'stakeholder'"
           v-model="password"
           rounded
           class="module-default__text-field"
@@ -28,6 +29,7 @@
         <v-dialog v-model="changePasswordDialog" persistent max-width="500px">
           <template #activator="{ on, attrs }">
             <v-btn
+              :disabled="userType === 'stakeholder'"
               rounded
               v-bind="attrs"
               class="module-default__log-btn"
@@ -81,6 +83,7 @@
           rounded
           class="module-default__text-field"
           label="Rename team name"
+          :disabled="userType === 'stakeholder'"
           :placeholder="teamDoc.data.name"
           outlined
         ></v-text-field>
@@ -93,6 +96,7 @@
               class="module-default__log-btn"
               depressed
               outlined
+              :disabled="userType === 'stakeholder'"
               :ripple="false"
               v-on="on"
               >Rename Team</v-btn
@@ -130,7 +134,8 @@
     <div class="d-flex flex-row justify-start mt-6">
       <v-dialog v-model="leaveTeamDialog" persistent max-width="500px">
         <template #activator="{ on, attrs }">
-          <v-btn v-bind="attrs" rounded x-large color="red" dark depressed v-on="on"
+          <v-btn 
+            :disabled="userType === 'stakeholder'" v-bind="attrs" rounded x-large color="red" dark depressed v-on="on"
             >Leave Team</v-btn
           >
         </template>

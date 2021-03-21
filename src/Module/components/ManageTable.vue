@@ -16,6 +16,7 @@
       </template>
       <template v-if="viewer.data._id.equals(teamDoc.data.owner)" #[`item.action`]="{ item }">
         <v-btn
+          :disabled="userType === 'stakeholder'"
           v-if="!isOwner(item)"
           x-small
           outlined
@@ -26,6 +27,7 @@
         >
 
         <v-btn
+          :disabled="userType === 'stakeholder'"
           v-if="isOwner(item)"
           x-small
           outlined

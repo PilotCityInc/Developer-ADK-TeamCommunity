@@ -3,6 +3,7 @@
     <div class="headline font-weight-black mb-6 mt-6">Create</div>
     <div class="module-default__log-text mb-5 mt-5">
       <v-text-field
+        :disabled="userType === 'stakeholder'"
         v-model="name"
         rounded
         class="module-default__text-field"
@@ -19,7 +20,7 @@
             class="module-default__log-btn"
             depressed
             outlined
-            :disabled="name.length === 0"
+            :disabled="(name.length === 0) || userType === 'stakeholder'"
             :ripple="false"
             v-on="on"
             >Create Team</v-btn

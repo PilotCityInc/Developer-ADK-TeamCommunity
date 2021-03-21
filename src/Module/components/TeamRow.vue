@@ -13,7 +13,7 @@
                   small
                   outlined
                   class="module-default__team-buttons mr-3 font-weight-black"
-                  disabled
+                  :disabled="userType === 'participant' || userType === 'stakeholder'"
                   @click="joinTeamDialog = true"
                   >{{ team.data.name }}</v-btn
                 >
@@ -23,6 +23,7 @@
           </v-tooltip>
           <v-btn
             v-if="numMembers < maxTeamMembers"
+            :disabled="userType === 'stakeholder'"
             :ripple="false"
             rounded
             depressed
