@@ -280,12 +280,12 @@ export default defineComponent({
   }
   &__text-field {
     &.v-text-field {
-      width: 400px;
+      // width: 400px;
     }
   }
   &__log-btn {
     &.v-btn:not(.v-btn--round).v-size--default {
-      min-height: 57px;
+      // min-height: 57px;
     }
     margin-left: 20px;
     height: 100%;

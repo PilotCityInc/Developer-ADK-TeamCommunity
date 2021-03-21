@@ -11,7 +11,7 @@
     </div>
 
     <div v-if="viewerIsOwner">
-      <div class="headline font-weight-black mb-3 mt-6">Settings</div>
+      <div class="headline font-weight-black mb-3 mt-12">Settings</div>
 
       <div class="module-default__log-text mt-5 mb-5">
         <v-text-field
