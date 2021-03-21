@@ -77,7 +77,7 @@
         </v-dialog>
       </div>
 
-      <div class="module-default__log-text">
+      <div class="">
         <v-text-field
           v-model="newTeamName"
           rounded
@@ -208,6 +208,13 @@ export default defineComponent({
     viewer: {
       required: true,
       type: Object
+    },
+    userType: {
+      required: true,
+      type: String,
+      // participant: '',
+      // organizer: '',
+      // stakeholder: ''
     }
   },
   setup(props, ctx) {

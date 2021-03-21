@@ -76,6 +76,15 @@ import { reactive, toRefs } from '@vue/composition-api';
 
 export default {
   name: 'CreateTeam',
+  props: {
+    userType: {
+      required: true,
+      type: String,
+      // participant: '',
+      // organizer: '',
+      // stakeholder: ''
+    }
+  },
   setup(props, ctx) {
     const state = reactive({
       name: '',

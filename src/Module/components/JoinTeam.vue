@@ -34,6 +34,13 @@ export default defineComponent({
       required: true,
       type: Array as PropType<Array<TeamDoc>>
     },
+    userType: {
+      required: true,
+      type: String,
+      // participant: '',
+      // organizer: '',
+      // stakeholder: ''
+    },
     maxTeamMembers: {
       required: true,
       type: Number
