@@ -36,7 +36,7 @@ export default defineComponent({
     },
     userType: {
       required: true,
-      type: String,
+      type: String
       // participant: '',
       // organizer: '',
       // stakeholder: ''

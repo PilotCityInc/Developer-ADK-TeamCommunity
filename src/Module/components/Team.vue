@@ -13,6 +13,7 @@
     <div v-if="viewerIsOwner">
       <div class="headline font-weight-black mb-3 mt-12">Settings</div>
 
+<<<<<<< HEAD
       <div class="d-flex flex-row justify-start mt-5 mb-5">
         <div>
           <v-text-field
@@ -42,6 +43,35 @@
                 >Set Password</v-btn
               >
             </template>
+=======
+      <div class="module-default__log-text mt-5 mb-5">
+        <v-text-field
+          v-model="password"
+          :readonly="userType === 'stakeholder'"
+          rounded
+          class="module-default__text-field"
+          label="View, copy or change password"
+          outlined
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'"
+          @click:append="showPassword = !showPassword"
+        ></v-text-field>
+
+        <v-dialog v-model="changePasswordDialog" persistent max-width="500px">
+          <template #activator="{ on, attrs }">
+            <v-btn
+              :disabled="userType === 'stakeholder'"
+              rounded
+              v-bind="attrs"
+              class="module-default__log-btn"
+              depressed
+              outlined
+              :ripple="false"
+              v-on="on"
+              >Set Password</v-btn
+            >
+          </template>
+>>>>>>> cd009bef2e90b16eb0160544925ad71043b98790
 
             <v-card>
               <v-card-title class="d-flex flex-column">
@@ -140,8 +170,15 @@
     <div class="d-flex flex-row justify-start mt-6">
       <v-dialog v-model="leaveTeamDialog" persistent max-width="500px">
         <template #activator="{ on, attrs }">
-          <v-btn 
-            :disabled="userType === 'stakeholder'" v-bind="attrs" rounded x-large color="red" dark depressed v-on="on"
+          <v-btn
+            :disabled="userType === 'stakeholder'"
+            v-bind="attrs"
+            rounded
+            x-large
+            color="red"
+            dark
+            depressed
+            v-on="on"
             >Leave Team</v-btn
           >
         </template>
@@ -217,7 +254,7 @@ export default defineComponent({
     },
     userType: {
       required: true,
-      type: String,
+      type: String
       // participant: '',
       // organizer: '',
       // stakeholder: ''

@@ -3,8 +3,8 @@
     <div class="headline font-weight-black mb-6 mt-6">Create</div>
     <div class="module-default__log-text mb-5 mt-5">
       <v-text-field
-        :disabled="userType === 'stakeholder'"
         v-model="name"
+        :disabled="userType === 'stakeholder'"
         rounded
         class="module-default__text-field"
         label="Create new team"
@@ -20,7 +20,7 @@
             class="module-default__log-btn"
             depressed
             outlined
-            :disabled="(name.length === 0) || userType === 'stakeholder'"
+            :disabled="name.length === 0 || userType === 'stakeholder'"
             :ripple="false"
             v-on="on"
             >Create Team</v-btn
@@ -38,6 +38,7 @@
             <div class="d-flex flex-column justify-center">
               <v-text-field
                 v-model="password"
+                :readonly="userType === 'stakeholder'"
                 class="justify-center ma-2"
                 x-large
                 rounded
@@ -51,7 +52,7 @@
                 :dark="password.length > 0"
                 rounded
                 depressed
-                :disabled="password.length === 0"
+                :disabled="password.length === 0 || userType === 'stakeholder'"
                 @click="createTeam"
                 >Set Password</v-btn
               >
@@ -79,7 +80,7 @@ export default {
   props: {
     userType: {
       required: true,
-      type: String,
+      type: String
       // participant: '',
       // organizer: '',
       // stakeholder: ''
