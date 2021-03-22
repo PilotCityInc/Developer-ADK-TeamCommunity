@@ -154,7 +154,7 @@ export default defineComponent({
     const fetchTeams = async () => {
       const teams = await props.db
         .collection('ProgramTeam')
-        .find({ program_id: state.programDoc._id });
+        .find({ program_id: state.programDoc?.data._id });
       state.teams = teams.map(team => {
         return {
           data: team
