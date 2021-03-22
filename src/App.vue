@@ -82,11 +82,7 @@ export default defineComponent({
       collection(name) {
         return {
           find(query) {
-            return {
-              toArray() {
-                return new Promise((resolve, reject) => resolve(teams.value));
-              }
-            };
+            return new Promise((resolve, reject) => resolve(teams.value));
           },
           findOne({ _id }) {
             return new Promise((resolve, reject) =>
@@ -200,7 +196,7 @@ export default defineComponent({
       userDoc,
       teamDoc: null,
       userTypeStub,
-      db: null
+      db
     };
   }
 });

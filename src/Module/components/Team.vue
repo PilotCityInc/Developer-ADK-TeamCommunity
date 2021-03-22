@@ -16,8 +16,8 @@
       <div class="d-flex flex-row justify-start mt-5 mb-5">
         <div>
           <v-text-field
-            :readonly="userType === 'stakeholder'"
             v-model="password"
+            :readonly="userType === 'stakeholder'"
             rounded
             class="module-default__text-field"
             label="View, copy or change password"
@@ -110,7 +110,9 @@
 
             <v-card>
               <v-card-title class="d-flex flex-column">
-                <div class="overline font-weight-bold">Are you sure you want to rename the team?</div>
+                <div class="overline font-weight-bold">
+                  Are you sure you want to rename the team?
+                </div>
               </v-card-title>
 
               <v-divider></v-divider>
@@ -126,7 +128,14 @@
                     @click="renameTeamDialog = false"
                     >Cancel</v-btn
                   >
-                  <v-btn class="ma-2" color="green" x-large dark rounded depressed @click="renameTeam"
+                  <v-btn
+                    class="ma-2"
+                    color="green"
+                    x-large
+                    dark
+                    rounded
+                    depressed
+                    @click="renameTeam"
                     >Confirm</v-btn
                   >
                 </div>
@@ -247,7 +256,7 @@ export default defineComponent({
 
     const teamMembers = computed(() => {
       return props.teamDoc.data.members.filter(member => {
-        return member._id !== props.teamDoc.data.owner;
+        return !member._id.equals(props.teamDoc.data.owner);
       });
     });
 
