@@ -15,8 +15,8 @@
 
       <div class="module-default__log-text mt-5 mb-5">
         <v-text-field
-          :readonly="userType === 'stakeholder'"
           v-model="password"
+          :readonly="userType === 'stakeholder'"
           rounded
           class="module-default__text-field"
           label="View, copy or change password"
@@ -134,8 +134,15 @@
     <div class="d-flex flex-row justify-start mt-6">
       <v-dialog v-model="leaveTeamDialog" persistent max-width="500px">
         <template #activator="{ on, attrs }">
-          <v-btn 
-            :disabled="userType === 'stakeholder'" v-bind="attrs" rounded x-large color="red" dark depressed v-on="on"
+          <v-btn
+            :disabled="userType === 'stakeholder'"
+            v-bind="attrs"
+            rounded
+            x-large
+            color="red"
+            dark
+            depressed
+            v-on="on"
             >Leave Team</v-btn
           >
         </template>
@@ -211,7 +218,7 @@ export default defineComponent({
     },
     userType: {
       required: true,
-      type: String,
+      type: String
       // participant: '',
       // organizer: '',
       // stakeholder: ''
