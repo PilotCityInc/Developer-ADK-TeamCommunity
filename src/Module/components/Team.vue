@@ -13,121 +13,127 @@
     <div v-if="viewerIsOwner">
       <div class="headline font-weight-black mb-3 mt-12">Settings</div>
 
-      <div class="module-default__log-text mt-5 mb-5">
-        <v-text-field
-          :readonly="userType === 'stakeholder'"
-          v-model="password"
-          rounded
-          class="module-default__text-field"
-          label="View, copy or change password"
-          outlined
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPassword ? 'text' : 'password'"
-          @click:append="showPassword = !showPassword"
-        ></v-text-field>
+      <div class="d-flex flex-row justify-start mt-5 mb-5">
+        <div>
+          <v-text-field
+            :readonly="userType === 'stakeholder'"
+            v-model="password"
+            rounded
+            class="module-default__text-field"
+            label="View, copy or change password"
+            outlined
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showPassword ? 'text' : 'password'"
+            @click:append="showPassword = !showPassword"
+          ></v-text-field>
+        </div>
+        <div>
+          <v-dialog v-model="changePasswordDialog" persistent max-width="500px">
+            <template #activator="{ on, attrs }">
+              <v-btn
+                :disabled="userType === 'stakeholder'"
+                rounded
+                v-bind="attrs"
+                class="module-default__log-btn"
+                depressed
+                outlined
+                :ripple="false"
+                v-on="on"
+                >Set Password</v-btn
+              >
+            </template>
 
-        <v-dialog v-model="changePasswordDialog" persistent max-width="500px">
-          <template #activator="{ on, attrs }">
-            <v-btn
-              :disabled="userType === 'stakeholder'"
-              rounded
-              v-bind="attrs"
-              class="module-default__log-btn"
-              depressed
-              outlined
-              :ripple="false"
-              v-on="on"
-              >Set Password</v-btn
-            >
-          </template>
+            <v-card>
+              <v-card-title class="d-flex flex-column">
+                <div class="overline font-weight-bold">
+                  Are you sure you want to change the password?
+                </div>
+              </v-card-title>
 
-          <v-card>
-            <v-card-title class="d-flex flex-column">
-              <div class="overline font-weight-bold">
-                Are you sure you want to change the password?
-              </div>
-            </v-card-title>
+              <v-divider></v-divider>
 
-            <v-divider></v-divider>
-
-            <v-container class="d-flex flex-column justify-center">
-              <div class="d-flex flex-row justify-center mt-4 mb-6">
-                <v-btn
-                  class="ma-2"
-                  outlined
-                  x-large
-                  rounded
-                  depressed
-                  @click="changePasswordDialog = false"
-                  >Cancel</v-btn
-                >
-                <v-btn
-                  class="ma-2"
-                  color="green"
-                  x-large
-                  dark
-                  rounded
-                  depressed
-                  @click="changePassword"
-                  >Confirm</v-btn
-                >
-              </div>
-            </v-container>
-          </v-card>
-        </v-dialog>
+              <v-container class="d-flex flex-column justify-center">
+                <div class="d-flex flex-row justify-center mt-4 mb-6">
+                  <v-btn
+                    class="ma-2"
+                    outlined
+                    x-large
+                    rounded
+                    depressed
+                    @click="changePasswordDialog = false"
+                    >Cancel</v-btn
+                  >
+                  <v-btn
+                    class="ma-2"
+                    color="green"
+                    x-large
+                    dark
+                    rounded
+                    depressed
+                    @click="changePassword"
+                    >Confirm</v-btn
+                  >
+                </div>
+              </v-container>
+            </v-card>
+          </v-dialog>
+        </div>
       </div>
 
-      <div class="">
-        <v-text-field
-          v-model="newTeamName"
-          rounded
-          class="module-default__text-field"
-          label="Rename team name"
-          :disabled="userType === 'stakeholder'"
-          :placeholder="teamDoc.data.name"
-          outlined
-        ></v-text-field>
+      <div class="d-flex flex-row justify-start">
+        <div>
+          <v-text-field
+            v-model="newTeamName"
+            rounded
+            class="module-default__text-field"
+            label="Rename team name"
+            :disabled="userType === 'stakeholder'"
+            :placeholder="teamDoc.data.name"
+            outlined
+          ></v-text-field>
+        </div>
+        <div>
+          <v-dialog v-model="renameTeamDialog" persistent max-width="500px">
+            <template #activator="{ on, attrs }">
+              <v-btn
+                rounded
+                v-bind="attrs"
+                class="module-default__log-btn"
+                depressed
+                outlined
+                :disabled="userType === 'stakeholder'"
+                :ripple="false"
+                v-on="on"
+                >Rename Team</v-btn
+              >
+            </template>
 
-        <v-dialog v-model="renameTeamDialog" persistent max-width="500px">
-          <template #activator="{ on, attrs }">
-            <v-btn
-              rounded
-              v-bind="attrs"
-              class="module-default__log-btn"
-              depressed
-              outlined
-              :disabled="userType === 'stakeholder'"
-              :ripple="false"
-              v-on="on"
-              >Rename Team</v-btn
-            >
-          </template>
+            <v-card>
+              <v-card-title class="d-flex flex-column">
+                <div class="overline font-weight-bold">Are you sure you want to rename the team?</div>
+              </v-card-title>
 
-          <v-card>
-            <v-card-title class="d-flex flex-column">
-              <div class="overline font-weight-bold">Are you sure you want to rename the team?</div>
-            </v-card-title>
+              <v-divider></v-divider>
 
-            <v-divider></v-divider>
-
-            <v-container class="d-flex flex-column justify-center">
-              <div class="d-flex flex-row justify-center mt-4 mb-6">
-                <v-btn
-                  class="ma-2"
-                  outlined
-                  x-large
-                  rounded
-                  depressed
-                  @click="renameTeamDialog = false"
-                  >Cancel</v-btn
-                >
-                <v-btn class="ma-2" color="green" x-large dark rounded depressed @click="renameTeam"
-                  >Confirm</v-btn
-                >
-              </div>
-            </v-container>
-          </v-card>
-        </v-dialog>
+              <v-container class="d-flex flex-column justify-center">
+                <div class="d-flex flex-row justify-center mt-4 mb-6">
+                  <v-btn
+                    class="ma-2"
+                    outlined
+                    x-large
+                    rounded
+                    depressed
+                    @click="renameTeamDialog = false"
+                    >Cancel</v-btn
+                  >
+                  <v-btn class="ma-2" color="green" x-large dark rounded depressed @click="renameTeam"
+                    >Confirm</v-btn
+                  >
+                </div>
+              </v-container>
+            </v-card>
+          </v-dialog>
+        </div>
       </div>
     </div>
 
