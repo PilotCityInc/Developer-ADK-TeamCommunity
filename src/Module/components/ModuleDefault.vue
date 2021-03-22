@@ -51,13 +51,14 @@
           :user-type="userType"
           @joinTeam="joinTeam"
         />
-        <CreateTeam @createTeam="createTeam" />
+        <CreateTeam :user-type="userType" @createTeam="createTeam" />
       </div>
       <!-- Viewer is a member of a team -->
       <Team
         v-if="teamDocument"
         :viewer="userDoc"
         :team-doc="teamDocument"
+        :user-type="userType"
         @changeOwner="changeOwner"
         @removeMember="removeMember"
         @changePassword="changePassword"
@@ -71,17 +72,12 @@
   </v-container>
 </template>
 <script lang="ts">
-import {
-  defineComponent,
-  reactive,
-  toRefs,
-  PropType,
-  WritableComputedRef
-} from '@vue/composition-api';
+import { defineComponent, reactive, toRefs, PropType, computed } from '@vue/composition-api';
 import { MongoDoc } from 'pcv4lib/src/types';
 import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
-import { Db } from 'mongodb';
 import { ObjectId } from 'bson';
+
+import * as Realm from 'realm-web';
 import Instruct from './ModuleInstruct.vue';
 import CreateTeam from './CreateTeam.vue';
 import JoinTeam from './JoinTeam.vue';
@@ -124,7 +120,7 @@ export default defineComponent({
     },
     db: {
       required: false,
-      type: Object as PropType<Db>,
+      type: Object,
       default: () => {}
     }
   },
@@ -144,10 +140,16 @@ export default defineComponent({
     const { adkData } = getModAdk(props, ctx.emit, 'team');
 
     state.programDoc = getModMongoDoc(props, ctx.emit);
-    console.log(state.teamDocument);
     if (props.teamDoc)
       state.teamDocument = getModMongoDoc(props, ctx.emit, {}, 'teamDoc', 'inputTeamDoc');
-    else console.log(state.teamDocument);
+    else {
+      state.teamDocument = computed({
+        get: () => props.teamDoc,
+        set: newVal => {
+          ctx.emit('inputTeamDoc', newVal);
+        }
+      });
+    }
     if (props.studentDoc)
       state.studentDocument = getModMongoDoc(props, ctx.emit, {}, 'studentDoc', 'inputStudentDoc');
 
@@ -162,7 +164,21 @@ export default defineComponent({
       });
     };
     fetchTeams();
-
+    const teamChangeStream = props.db.collection('ProgramTeam').watch({
+      filter: {
+        'fullDocument.program_id': state.programDoc?.data._id
+      }
+    });
+    (async () => {
+      // eslint-disable-next-line no-restricted-syntax
+      for await (const change of teamChangeStream) {
+        const changeIndex = state.teams.findIndex(team => {
+          return team.data._id.toString() === change.documentKey._id.toString();
+        });
+        if (change.operationType === 'delete') state.teams.splice(changeIndex, 1);
+        else state.teams.splice(changeIndex, 1, { data: change.fullDocument });
+      }
+    })();
     const joinTeam = async (_id: ObjectId) => {
       await props.db.collection('ProgramTeam').updateOne(
         { _id },
@@ -191,7 +207,7 @@ export default defineComponent({
       };
       const { insertedId } = await props.db.collection('ProgramTeam').insertOne(team);
       joinTeam(insertedId);
-      await fetchTeams();
+      //   await fetchTeams();
     };
 
     const removeMember = async (_id: ObjectId) => {
@@ -239,7 +255,7 @@ export default defineComponent({
           1
         );
         await props.db.collection('ProgramTeam').deleteOne({ _id: state.teamDocument!.data._id });
-        await fetchTeams();
+        // await fetchTeams();
       }
       state.teamDocument = null;
     };

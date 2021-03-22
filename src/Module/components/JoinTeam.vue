@@ -9,6 +9,7 @@
           :key="team.data.name"
           :team="team"
           :max-team-members="maxTeamMembers"
+          :user-type="userType"
           v-on="$listeners"
         />
       </div>
