@@ -45,7 +45,12 @@
     <div class="module-edit__container mt-12">
       <!-- Viewer is not a member of a team -->
       <div v-if="!teamDocument">
-        <JoinTeam :teams="teams" :max-team-members="adkData.maxTeamMembers" @joinTeam="joinTeam" />
+        <JoinTeam
+          :teams="teams"
+          :max-team-members="adkData.maxTeamMembers"
+          :user-type="userType"
+          @joinTeam="joinTeam"
+        />
         <CreateTeam @createTeam="createTeam" />
       </div>
       <!-- Viewer is a member of a team -->
@@ -66,7 +71,13 @@
   </v-container>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, PropType } from '@vue/composition-api';
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  PropType,
+  WritableComputedRef
+} from '@vue/composition-api';
 import { MongoDoc } from 'pcv4lib/src/types';
 import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
 import { Db } from 'mongodb';
@@ -125,16 +136,18 @@ export default defineComponent({
       },
       showInstructions: true,
       teams: [] as MongoDoc[],
-      programDoc: null as null | MongoDoc,
-      teamDocument: null as null | MongoDoc,
-      studentDocument: null as null | MongoDoc
+      programDoc: null as any,
+      teamDocument: null as any,
+      studentDocument: null as any
     });
 
     const { adkData } = getModAdk(props, ctx.emit, 'team');
 
     state.programDoc = getModMongoDoc(props, ctx.emit);
+    console.log(state.teamDocument);
     if (props.teamDoc)
       state.teamDocument = getModMongoDoc(props, ctx.emit, {}, 'teamDoc', 'inputTeamDoc');
+    else console.log(state.teamDocument);
     if (props.studentDoc)
       state.studentDocument = getModMongoDoc(props, ctx.emit, {}, 'studentDoc', 'inputStudentDoc');
 
@@ -154,7 +167,7 @@ export default defineComponent({
       await props.db.collection('ProgramTeam').updateOne(
         { _id },
         {
-          $push: {
+          $addToSet: {
             members: {
               _id: props.userDoc?.data._id,
               firstName: props.userDoc?.data.firstName,

@@ -106,6 +106,13 @@ export default defineComponent({
     maxTeamMembers: {
       required: true,
       type: Number
+    },
+    userType: {
+      required: true,
+      type: String
+      // participant: '',
+      // organizer: '',
+      // stakeholder: ''
     }
   },
   setup(props, ctx) {
