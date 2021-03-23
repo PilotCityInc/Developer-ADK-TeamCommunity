@@ -176,7 +176,11 @@ export default defineComponent({
           return team.data._id.toString() === change.documentKey._id.toString();
         });
         if (change.operationType === 'delete') state.teams.splice(changeIndex, 1);
-        else state.teams.splice(changeIndex, 1, { data: change.fullDocument });
+        else if (changeIndex !== -1)
+          state.teams.splice(changeIndex, 1, { data: change.fullDocument });
+        else {
+          state.teams.push(change.fullDocument);
+        }
       }
     })();
     const joinTeam = async (_id: ObjectId) => {
