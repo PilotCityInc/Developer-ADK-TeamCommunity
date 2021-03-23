@@ -179,7 +179,7 @@ export default defineComponent({
         else if (changeIndex !== -1)
           state.teams.splice(changeIndex, 1, { data: change.fullDocument });
         else {
-          state.teams.push(change.fullDocument);
+          state.teams.push({ data: change.fullDocument });
         }
       }
     })();
