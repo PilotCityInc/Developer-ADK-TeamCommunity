@@ -7,8 +7,8 @@
       :items-per-page="100"
       :hide-default-footer="true"
     >
-      <template #[`item.avatar`]>
-        <v-avatar size="32"><img src="https://picsum.photos/510/300?random" /></v-avatar>
+      <template #[`item.avatar`]="{ item }">
+        <v-avatar size="32" color="grey lighten-2"><v-img :src="item.avatar" /></v-avatar>
       </template>
       <template #[`item.name`]="{ item }"> {{ item.firstName }} {{ item.lastName }} </template>
       <template #[`item.access`]="{ item }">
@@ -16,8 +16,8 @@
       </template>
       <template v-if="viewer.data._id.equals(teamDoc.data.owner)" #[`item.action`]="{ item }">
         <v-btn
-          :disabled="userType === 'stakeholder'"
           v-if="!isOwner(item)"
+          :disabled="userType === 'stakeholder'"
           x-small
           outlined
           depressed
@@ -27,8 +27,8 @@
         >
 
         <v-btn
-          :disabled="userType === 'stakeholder'"
           v-if="isOwner(item)"
+          :disabled="userType === 'stakeholder'"
           x-small
           outlined
           depressed
