@@ -130,6 +130,10 @@ export default defineComponent({
     viewer: {
       required: true,
       type: Object
+    },
+    userType: {
+      required: true,
+      type: String
     }
   },
   setup(props, ctx) {

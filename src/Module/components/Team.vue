@@ -6,6 +6,7 @@
         class="module-default__table-view"
         :team-doc="teamDoc"
         :viewer="viewer"
+        :user-type="userType"
         v-on="$listeners"
       ></ManageTable>
     </div>
