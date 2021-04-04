@@ -191,7 +191,8 @@ export default defineComponent({
             members: {
               _id: props.userDoc?.data._id,
               firstName: props.userDoc?.data.firstName,
-              lastName: props.userDoc?.data.lastName
+              lastName: props.userDoc?.data.lastName,
+              avatar: props.userDoc?.data.profile ? props.userDoc?.data.profile.small : ''
             }
           }
         }

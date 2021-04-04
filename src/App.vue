@@ -81,6 +81,7 @@ export default defineComponent({
     const db: Db = ({
       collection(name) {
         return {
+          watch(q) {},
           find(query) {
             return new Promise((resolve, reject) => resolve(teams.value));
           },
@@ -186,13 +187,14 @@ export default defineComponent({
       data: {
         firstName: 'me',
         lastName: 'test',
-        _id: new ObjectId(2)
+        _id: new ObjectId(2),
+        profile: { small: 'https://html.sammy-codes.com/images/small-profile.jpeg' }
       },
       changeStream: {}
     });
     return {
       programDocStub,
-      studentDoc: null,
+      studentDoc,
       userDoc,
       teamDoc: null,
       userTypeStub,

@@ -70,25 +70,14 @@
         </v-card>
       </v-dialog>
     </div>
-    <div v-if="userType !== 'stakeholder'">
-      <v-avatar
-        v-for="member in team.data.members"
-        :key="member.firstName + member.lastName"
-        class="module-default__team-avatar ml-1 mr-1"
-        size="28"
-        ><img src="https://picsum.photos/510/300?random"
-      /></v-avatar>
-    </div>
-    <div v-if="userType === 'stakeholder'">
-      <v-avatar
-        v-for="member in team.data.members"
-        :key="member.firstName + member.lastName"
-        class="module-default__team-avatar ml-1 mr-1"
-        size="28"
-        color="grey"
-      >
-      </v-avatar>
-    </div>
+    <v-avatar
+      v-for="member in team.data.members"
+      :key="member.firstName + member.lastName"
+      class="module-default__team-avatar ml-1 mr-1"
+      size="28"
+      color="grey lighten-2"
+      ><v-img :src="member.avatar"
+    /></v-avatar>
   </div>
 </template>
 
