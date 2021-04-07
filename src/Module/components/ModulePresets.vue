@@ -79,7 +79,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive } from '@vue/composition-api';
+import { defineComponent, PropType } from '@vue/composition-api';
 import { loading, getModAdk, getModMongoDoc } from 'pcv4lib/src';
 // import { Db } from 'mongodb';
 // import Instruct from './ModuleInstruct.vue';
@@ -101,7 +101,7 @@ export default defineComponent({
     },
     db: {
       required: true,
-      type: Object as PropType<Db>
+      type: Object as PropType<any>
     }
   },
   setup(props, ctx) {

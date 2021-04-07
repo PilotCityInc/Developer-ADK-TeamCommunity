@@ -20,7 +20,7 @@ import { ObjectId } from 'bson';
 import Module from './Module/Module.vue';
 import { MongoDoc } from './Module/types';
 
-const dummyTeams = new Array(35).fill().map((e, i) => {
+const dummyTeams = new Array(35).fill(null).map((e, i) => {
   const ownerId = new ObjectId(1);
   return {
     _id: new ObjectId(i),
@@ -79,24 +79,24 @@ export default defineComponent({
   setup() {
     const teams = ref(dummyTeams);
     const db: Db = ({
-      collection(name) {
+      collection() {
         return {
-          watch(q) {},
-          find(query) {
-            return new Promise((resolve, reject) => resolve(teams.value));
+          watch() {},
+          find() {
+            return new Promise(resolve => resolve(teams.value));
           },
-          findOne({ _id }) {
-            return new Promise((resolve, reject) =>
+          findOne({ _id }: any) {
+            return new Promise(resolve =>
               resolve(teams.value.filter(obj => obj._id.equals(_id))[0])
             );
           },
-          insertOne(doc) {
+          insertOne(doc: any) {
             const _id = new ObjectId(Math.floor(Math.random() * 100 + 42));
             teams.value.push({ _id, ...doc });
-            return new Promise((resolve, reject) => resolve({ insertedId: _id }));
+            return new Promise(resolve => resolve({ insertedId: _id }));
           },
-          updateOne({ _id }, query) {
-            return new Promise((resolve, reject) => {
+          updateOne({ _id }: any, query: any) {
+            return new Promise(resolve => {
               if (!('$push' in query)) resolve(true);
               const {
                 $push: { members }
@@ -106,8 +106,8 @@ export default defineComponent({
               resolve(true);
             });
           },
-          deleteOne({ _id }) {
-            return new Promise((resolve, reject) => {
+          deleteOne({ _id }: any) {
+            return new Promise(resolve => {
               teams.value = teams.value.filter(obj => !obj._id.equals(_id));
               resolve(true);
             });
@@ -183,7 +183,7 @@ export default defineComponent({
       },
       changeStream: {}
     });
-    const userDoc: Ref<MongoDoc> = ref({
+    const userDoc: Ref<any> = ref({
       data: {
         firstName: 'me',
         lastName: 'test',

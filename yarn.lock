@@ -2196,6 +2196,11 @@
     "@types/koa-compose" "*"
     "@types/node" "*"
 
+"@types/lodash@^4.14.168":
+  version "4.14.168"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.168.tgz#fe24632e79b7ade3f132891afff86caa5e5ce008"
+  integrity sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
+
 "@types/long@^4.0.0":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.1.tgz#459c65fa1867dafe6a8f322c4c51695663cc55e9"
@@ -2220,6 +2225,14 @@
   version "3.6.9"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.6.9.tgz#55f7e5b04f33904a12d6f0ab4f5d119a5062ade4"
   integrity sha512-2XSGr/+IOKeFQ5tU9ATcIiIr7bpHqWyOXNGLOOhp0kg2NnfEvoKZF1SZ25j4zvJRqM2WeSUjfWSvymFJ3HBGJQ==
+  dependencies:
+    "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/mongodb@^3.6.10":
+  version "3.6.12"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.6.12.tgz#727960d34f35054d2f2ce68909e16094f742d935"
+  integrity sha512-49aEzQD5VdHPxyd5dRyQdqEveAg9LanwrH8RQipnMuulwzKmODXIZRp0umtxi1eBUfEusRkoy8AVOMr+kVuFog==
   dependencies:
     "@types/bson" "*"
     "@types/node" "*"
@@ -4170,6 +4183,13 @@ aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
+
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -6476,6 +6496,42 @@ detect-node@^2.0.4:
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
 
+developer-adk-setup@^1.0.20:
+  version "1.0.52"
+  resolved "https://registry.yarnpkg.com/developer-adk-setup/-/developer-adk-setup-1.0.52.tgz#773bf7facb29e93ab1b8fe47c6780f61c5b38090"
+  integrity sha512-3Qeb+qPWG/r4oi5mR4q1c2veAWbDT0c68NMe2vJrA1wt5Ho7GeR6iHNdN6pHNTSlm4RIRs1IPpWE28pTWQwbDQ==
+  dependencies:
+    "@mdi/font" "^3.6.95"
+    "@rollup/plugin-buble" "^0.21.3"
+    "@rollup/plugin-commonjs" "^16.0.0"
+    "@types/lodash" "^4.14.168"
+    "@types/mongodb" "^3.6.10"
+    "@vue/cli" "^4.4.6"
+    apollo-boost "^0.4.9"
+    apollo-cache-inmemory "^1.6.6"
+    apollo-link-context "^1.0.20"
+    apollo-link-http "^1.5.17"
+    axios "^0.21.1"
+    bson "^4.2.3"
+    core-js "^3.6.5"
+    eslint "^7.11.0"
+    eslint-loader "^4.0.2"
+    fork-ts-checker-webpack-plugin "^5.2.0"
+    graphql-tag "^2.9.0"
+    lodash "^4.17.20"
+    mongodb "^3.6.5"
+    mongodb-stitch-browser-sdk "^4.8.0"
+    pcv4lib "^1.0.13"
+    realm-web "^0.7.0"
+    register-service-worker "^1.7.1"
+    roboto-fontface "*"
+    rollup-plugin-vue "^6.0.0-beta.11"
+    v-mask "^2.2.4"
+    vee-validate "^3.4.1"
+    vue "^2.6.12"
+    vue-apollo "^3.0.4y"
+    vuetify "^2.3.14"
+
 dicer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/dicer/-/dicer-0.3.0.tgz#eacd98b3bfbf92e8ab5c2fdb71aaac44bb06b872"
@@ -7928,7 +7984,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.3.tgz#e5598ad50174c1bc4e872301e82ac2cd97f90267"
   integrity sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
@@ -11552,6 +11608,19 @@ mongodb@^3.6.2:
   optionalDependencies:
     saslprep "^1.0.0"
 
+mongodb@^3.6.5:
+  version "3.6.6"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.6.tgz#92e3658f45424c34add3003e3046c1535c534449"
+  integrity sha512-WlirMiuV1UPbej5JeCMqE93JRfZ/ZzqE7nJTwP85XzjAF4rRSeq2bGCb1cjfoHLOF06+HxADaPGqT0g3SbVT1w==
+  dependencies:
+    bl "^2.2.1"
+    bson "^1.1.4"
+    denque "^1.4.1"
+    optional-require "^1.0.2"
+    safe-buffer "^5.1.2"
+  optionalDependencies:
+    saslprep "^1.0.0"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -12217,6 +12286,11 @@ optimism@^0.14.0:
     "@wry/context" "^0.5.2"
     "@wry/trie" "^0.2.1"
 
+optional-require@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/optional-require/-/optional-require-1.0.2.tgz#c6c2d05170f8578397e68521bb01d30ef8b80925"
+  integrity sha512-HZubVd6IfHsbnpdNF/ICaSAzBUEW1TievpkjY3tB4Jnk8L7+pJ3conPzUt3Mn/6OZx9uzTDOHYPGA8/AxYHBOg==
+
 optionator@^0.8.1, optionator@^0.8.2:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.3.tgz#84fa1d036fe9d3c7e21d99884b601167ec8fb495"
@@ -12688,10 +12762,17 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-pcv4lib@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/pcv4lib/-/pcv4lib-1.0.12.tgz#693523e1a983a821b526f59fc531d07720e0b95e"
-  integrity sha512-s7U3Q4YUc+fU4DUFGZ9HDoZ5prwxxkx/V/rPIsiP23wUfNsQm2Dt8YaPca0YV7z8n6tbewEtKR2UhtiWG50z4w==
+pcv4lib@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/pcv4lib/-/pcv4lib-1.0.13.tgz#eefc2dcb2842b4285ac478777da1338a60f17693"
+  integrity sha512-RwymbIuNoao26xNss7wVKuSajU28EqfaARS+wG9rp7yNVQprmbcKu1ke+XDdwv2/5EOUcPealPjSkSKcjgubZg==
+
+pcv4lib@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/pcv4lib/-/pcv4lib-1.0.14.tgz#4d90d90dbe249e98838f7c1fce876465a563ffc2"
+  integrity sha512-+u7vPyHZirAV/vrZipePDFYzaE04wvoQGP+wnK0YBXPgN9SrtMypGhQwLH0XFCdzK1WeSTC7T4PqdNBAlHI4IA==
+  dependencies:
+    developer-adk-setup "^1.0.20"
 
 pend@~1.2.0:
   version "1.2.0"
@@ -16169,6 +16250,11 @@ uuid@^8.0.0, uuid@^8.3.0:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+v-mask@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/v-mask/-/v-mask-2.2.4.tgz#d7452982c8774478c0475f771e8d1367cb2b04e0"
+  integrity sha512-d78Rhpz/cCwLsSJ50UJ+volzylU6Iq3O4La1Aj3WTYCM0txfL9chgnCC6FHwNKqfHHtMEjdDh7gmpnsPz6tO6A==
 
 v8-compile-cache@^2.0.3:
   version "2.3.0"
