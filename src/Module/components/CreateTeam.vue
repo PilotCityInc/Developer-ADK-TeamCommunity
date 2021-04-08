@@ -21,6 +21,7 @@
               rounded
               class="module-default__log-btn"
               depressed
+              x-large
               outlined
               :disabled="name.length === 0 || userType === 'stakeholder'"
               :ripple="false"
