@@ -11,7 +11,7 @@
       ></ManageTable>
     </div>
 
-    <div v-if="viewerIsOwner">
+    <div v-if="viewerIsOwner" class="mt-6">
       <div class="headline font-weight-black mb-3 mt-12">Settings</div>
 
       <div class="d-flex flex-row justify-start mt-5 mb-5">
@@ -37,6 +37,7 @@
                 v-bind="attrs"
                 class="module-default__log-btn"
                 depressed
+                x-large
                 outlined
                 :ripple="false"
                 v-on="on"
@@ -101,6 +102,7 @@
                 v-bind="attrs"
                 class="module-default__log-btn"
                 depressed
+                x-large
                 outlined
                 :disabled="userType === 'stakeholder'"
                 :ripple="false"
