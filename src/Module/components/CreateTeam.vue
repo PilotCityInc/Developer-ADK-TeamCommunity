@@ -77,9 +77,9 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs } from '@vue/composition-api';
+import { defineComponent, reactive, toRefs } from '@vue/composition-api';
 
-export default {
+export default defineComponent({
   name: 'CreateTeam',
   props: {
     userType: {
@@ -90,7 +90,7 @@ export default {
       // stakeholder: ''
     }
   },
-  setup(props, ctx) {
+  setup(_props, ctx) {
     const state = reactive({
       name: '',
       password: '',
@@ -103,5 +103,5 @@ export default {
     };
     return { ...toRefs(state), createTeam };
   }
-};
+});
 </script>

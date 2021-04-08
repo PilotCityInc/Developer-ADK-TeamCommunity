@@ -157,7 +157,7 @@ export default defineComponent({
       const teams = await props.db
         .collection('ProgramTeam')
         .find({ program_id: state.programDoc?.data._id });
-      state.teams = teams.map(team => {
+      state.teams = teams.map((team: any) => {
         return {
           data: team
         };
@@ -177,9 +177,12 @@ export default defineComponent({
         });
         if (change.operationType === 'delete') state.teams.splice(changeIndex, 1);
         else if (changeIndex !== -1)
-          state.teams.splice(changeIndex, 1, { data: change.fullDocument });
+          state.teams.splice(changeIndex, 1, {
+            ...state.teams[changeIndex],
+            data: change.fullDocument
+          });
         else {
-          state.teams.push({ data: change.fullDocument });
+          state.teams.push({ ...state.teams[changeIndex], data: change.fullDocument });
         }
       }
     })();
@@ -217,7 +220,7 @@ export default defineComponent({
 
     const removeMember = async (_id: ObjectId) => {
       state.teamDocument!.data.members.splice(
-        state.teamDocument!.data.members.findIndex(member => {
+        state.teamDocument!.data.members.findIndex((member: any) => {
           return member._id.equals(_id);
         }),
         1
