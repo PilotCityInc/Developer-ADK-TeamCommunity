@@ -14,7 +14,7 @@
         label="Maximum Team Members"
       ></v-select>
       <div class="text-center">
-        <v-btn x-large rounded outlined depressed :loading="loading" @click="process()">Save</v-btn>
+        <v-btn class="mt-8" x-large rounded outlined depressed :loading="loading" @click="process()">Save</v-btn>
       </div>
       <v-alert v-if="success || error" :type="success ? 'success' : 'error'" class="mt-2">{{
         message
