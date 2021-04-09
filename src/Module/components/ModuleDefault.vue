@@ -134,7 +134,8 @@ export default defineComponent({
       teams: [] as MongoDoc[],
       programDoc: null as any,
       teamDocument: null as any,
-      studentDocument: null as any
+      studentDocument: null as any,
+      studentAdkIndex: -1
     });
 
     const { adkData } = getModAdk(props, ctx.emit, 'team');
@@ -150,8 +151,18 @@ export default defineComponent({
         }
       });
     }
-    if (props.studentDoc)
+    if (props.studentDoc) {
       state.studentDocument = getModMongoDoc(props, ctx.emit, {}, 'studentDoc', 'inputStudentDoc');
+      const { adkData: studentAdkData, adkIndex: studentAdkIndex } = getModAdk(
+        props,
+        ctx.emit,
+        'team',
+        {},
+        'studentDoc',
+        'inputStudentDoc'
+      );
+      state.studentAdkIndex = studentAdkIndex;
+    }
 
     const fetchTeams = async () => {
       const teams = await props.db
@@ -202,6 +213,10 @@ export default defineComponent({
       );
       const team = await props.db.collection('ProgramTeam').findOne({ _id });
       state.teamDocument = { data: team };
+      state.studentDocument.update(() => ({
+        isComplete: true,
+        adkIndex: state.studentAdkIndex
+      }));
     };
 
     const createTeam = async (name: string, password: string) => {
