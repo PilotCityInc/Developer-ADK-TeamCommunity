@@ -12,7 +12,7 @@
     </div>
 
     <div v-if="viewerIsOwner" class="mt-6">
-      <div class="headline font-weight-black mb-3 mt-12">Settings</div>
+      <div class="headline font-weight-black mb-8 mt-12">Settings</div>
 
         <div class="d-flex flex-row mt-3 mb-3">
           <v-text-field
