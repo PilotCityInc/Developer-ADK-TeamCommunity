@@ -292,11 +292,11 @@ export default defineComponent({
     const moduleName = ref('Team');
     const page = reactive({
       subpages: ['Setup', 'Presets'],
-      currentPage: 'setup'
+      currentPage: 'Setup'
     });
 
     if (props.userType === 'organizer') {
-      page.currentPage = 'presets';
+      page.currentPage = 'Presets';
     } else {
       page.currentPage = 'preview';
     }

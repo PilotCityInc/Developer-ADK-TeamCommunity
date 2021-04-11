@@ -112,7 +112,7 @@ export default defineComponent({
     });
     const joinTeam = () => {
       if (state.password === props.team.data.password) ctx.emit('joinTeam', props.team.data._id);
-      else state.error = 'Incorrect password! Please try again!';
+      else state.error = 'That password did not work out =/';
     };
     const numMembers = computed(() => props.team.data.members.length);
     return { joinTeam, numMembers, ...toRefs(state) };
