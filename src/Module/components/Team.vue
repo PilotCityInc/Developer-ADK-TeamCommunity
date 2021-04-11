@@ -14,7 +14,6 @@
     <div v-if="viewerIsOwner" class="mt-6">
       <div class="headline font-weight-black mb-3 mt-12">Settings</div>
 
-      <div class="d-flex flex-row justify-start mt-10 mb-5">
         <div>
           <v-text-field
             v-model="password"
@@ -80,9 +79,7 @@
             </v-card>
           </v-dialog>
         </div>
-      </div>
 
-      <div class="d-flex flex-row justify-start">
         <div>
           <v-text-field
             v-model="newTeamName"
@@ -147,7 +144,6 @@
           </v-dialog>
         </div>
       </div>
-    </div>
 
     <div class="d-flex flex-row justify-start mt-6">
       <v-dialog v-model="leaveTeamDialog" persistent max-width="500px">
