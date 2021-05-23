@@ -1,11 +1,6 @@
 <template>
   <v-container class="module-outcomes">
     <div class="module-outcomes__container">
-      <!-- <v-divider class="presets__divider"></v-divider> -->
-
-      <!-- <div class="presets__section-title">General</div> -->
-      <!-- <div class="presets__nopresets">No tweaking necessary</div> -->
-      <!-- <div class="presets__section-title">Maximum Team Members</div> -->
       <v-select
         v-model="adkData.maxTeamMembers"
         :items="maxTeamMemberItems"
@@ -14,7 +9,9 @@
         label="Maximum Team Members"
       ></v-select>
       <div class="text-center">
-        <v-btn class="mt-8" x-large rounded outlined depressed :loading="loading" @click="process()">Save</v-btn>
+        <v-btn class="mt-8" x-large rounded outlined depressed :loading="loading" @click="process()"
+          >Save</v-btn
+        >
       </div>
       <v-alert
         v-if="success || error"

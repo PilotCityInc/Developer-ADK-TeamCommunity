@@ -38,16 +38,13 @@ export default defineComponent({
     userType: {
       required: true,
       type: String
-      // participant: '',
-      // organizer: '',
-      // stakeholder: ''
     },
     maxTeamMembers: {
       required: true,
       type: Number
     }
   },
-  setup(props, ctx) {
+  setup(props) {
     const state = reactive({
       page: 1
     });

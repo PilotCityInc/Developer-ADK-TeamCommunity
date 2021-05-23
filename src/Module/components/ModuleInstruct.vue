@@ -93,19 +93,6 @@
               ></v-textarea>
             </validation-provider>
           </div>
-
-          <!-- <div>
-            <v-btn
-              class="module-instruct__instructions-add font-weight-black text-body-1"
-              depressed
-              color="white"
-              :disabled="invalid"
-              :ripple="false"
-              @click="populate()"
-            >
-              <v-icon class="module-instruct__instructions-add-icon"> mdi-plus </v-icon>
-            </v-btn>
-          </div> -->
         </div>
       </div>
     </v-container>
@@ -113,23 +100,14 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, defineComponent, PropType } from '@vue/composition-api';
+import { ref } from '@vue/composition-api';
 
 export default {
   name: 'ModuleInstruct',
 
   setup() {
-    // const programDoc = computed({
-    //   get: () => props.value,
-    //   set: newVal => {
-    //     ctx.emit('input', newVal);
-    //   }
-    // });
     const boilerInstructions = ref(['Explore teams to join or create a team', 'Manage your team']);
     const goal = ref(['To join, create or manage your project team']);
-    // function populate() {
-    //   boilerInstructions.value.push('');
-    // }
 
     return { boilerInstructions, tutorialDialog: false, goal };
   }

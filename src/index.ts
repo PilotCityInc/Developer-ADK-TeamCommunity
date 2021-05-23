@@ -4,7 +4,7 @@ import Module from './Module/Module.vue';
 const install: any = (Vue: any, options: any) => {
   if (install.installed) return;
   install.installed = true;
-  Vue.component('adk-boiler', {
+  Vue.component('AdkBoiler', {
     Module
   });
 };

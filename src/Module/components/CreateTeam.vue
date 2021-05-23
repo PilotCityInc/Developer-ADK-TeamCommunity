@@ -59,11 +59,6 @@
                   @click="createTeam"
                   >Set Password</v-btn
                 >
-
-                <!-- <div class="d-flex headline justify-center mt-6 mb-6">Or</div>
-
-                        <v-btn class="ma-2" x-large dark rounded depressed>Request to Join</v-btn> -->
-
                 <div class="d-flex justify-center mt-3 mb-3">
                   <v-btn icon @click="createTeamDialog = false"><v-icon>mdi-close</v-icon></v-btn>
                 </div>
