@@ -1,17 +1,6 @@
 <template>
-  <!--  TODO: make the inputs into actual components -->
   <v-container class="module">
     <div class="module__navbar">
-      <!-- <v-btn
-        v-if="currentPage == 'preview'"
-        dark
-        class="module__navbar-button"
-        small
-        depressed
-        color="grey lighten-1"
-        rounded
-        >00:00:00</v-btn
-      > -->
       <v-btn
         v-if="currentPage != 'preview' && userType === 'organizer'"
         class="module__navbar-button font-weight-bold"
@@ -34,37 +23,6 @@
         @click="currentPage = 'setup'"
         >Exit Preview</v-btn
       >
-
-      <!-- COMMENT OUT UNTIL VERSION WHERE CUSTOMIZABILITY IS ALLOWED -->
-
-      <!-- <v-menu v-if="currentPage != 'preview'" offset-y left>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn v-bind="attrs" small icon class="module__navbar-button" v-on="on">
-            <v-icon color="grey lighten-1">mdi-cog</v-icon></v-btn
-          >
-        </template>
-        <v-card class="module__menu">
-          <v-btn color="white" class="module__settings-menu" tile depressed>
-            <v-icon left color="#404142">mdi-arrow-horizontal-lock </v-icon>Lock</v-btn
-          >
-          <v-divider></v-divider>
-          <v-btn color="white" class="module__settings-menu" tile depressed>
-            <v-icon left color="#ea6764">mdi-trash-can-outline </v-icon>Delete</v-btn
-          >
-          <v-divider></v-divider>
-          <v-color-picker
-            v-model="selectedColor"
-            disabled
-            dot-size="25"
-            hide-canvas
-            hide-inputs
-            hide-mode-switch
-            show-swatches
-            :swatches="pilotcityColors"
-            swatches-max-height="100"
-          ></v-color-picker>
-        </v-card>
-      </v-menu> -->
     </div>
     <div class="module__container" :style="{ 'border-color': getColor }">
       <div class="module__title">
@@ -239,15 +197,18 @@ import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
 import '../styles/module.scss';
 import { Db } from 'mongodb';
 import { MongoDoc } from './types';
-import * as Module from './components';
+import ModuleMonitor from './components/ModuleMonitor.vue';
+import ModuleSetup from './components/ModuleSetup.vue';
+import ModulePresets from './components/ModulePresets.vue';
+import ModuleDefault from './components/ModuleDefault.vue';
 
 export default defineComponent({
   name: 'ModuleName',
   components: {
-    'module-monitor': Module.Monitor,
-    'module-setup': Module.Setup,
-    'module-presets': Module.Presets,
-    'module-preview': Module.Default
+    ModuleMonitor,
+    ModuleSetup,
+    ModulePresets,
+    'module-preview': ModuleDefault
   },
   props: {
     value: {
@@ -277,9 +238,6 @@ export default defineComponent({
     userType: {
       required: true,
       type: String
-      // participant: '',
-      // organizer: '',
-      // stakeholder: ''
     }
   },
   setup(props, ctx) {
@@ -352,18 +310,19 @@ export default defineComponent({
       programDoc,
       ...toRefs(color),
       ...toRefs(page),
+      ...toRefs(timelineData),
       config,
       moduleName,
       menu,
       getComponent,
       getColor,
-      ...toRefs(timelineData),
       timeline,
       comment
     };
   }
 });
 </script>
+
 <style lang="scss">
 html,
 body {
@@ -371,10 +330,6 @@ body {
   font-size: 16px;
   width: 100%;
   height: 100%;
-}
-
-.v-timeline-item__divider {
-  // align-items: start !important;
 }
 
 .module {

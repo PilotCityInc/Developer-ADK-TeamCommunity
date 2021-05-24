@@ -72,12 +72,18 @@
   </v-container>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs, PropType, computed } from '@vue/composition-api';
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  PropType,
+  computed,
+  onMounted
+} from '@vue/composition-api';
 import { MongoDoc } from 'pcv4lib/src/types';
 import { getModMongoDoc, getModAdk } from 'pcv4lib/src';
 import { ObjectId } from 'bson';
 
-import * as Realm from 'realm-web';
 import Instruct from './ModuleInstruct.vue';
 import CreateTeam from './CreateTeam.vue';
 import JoinTeam from './JoinTeam.vue';
@@ -99,9 +105,6 @@ export default defineComponent({
     userType: {
       required: true,
       type: String
-      // participant: '',
-      // organizer: '',
-      // stakeholder: ''
     },
     teamDoc: {
       required: false,
@@ -124,6 +127,7 @@ export default defineComponent({
       default: () => {}
     }
   },
+
   setup(props, ctx) {
     const state = reactive({
       setupInstructions: {
@@ -153,7 +157,7 @@ export default defineComponent({
     }
     if (props.studentDoc) {
       state.studentDocument = getModMongoDoc(props, ctx.emit, {}, 'studentDoc', 'inputStudentDoc');
-      const { adkData: studentAdkData, adkIndex: studentAdkIndex } = getModAdk(
+      const { adkIndex: studentAdkIndex } = getModAdk(
         props,
         ctx.emit,
         'team',
@@ -167,36 +171,14 @@ export default defineComponent({
     const fetchTeams = async () => {
       const teams = await props.db
         .collection('ProgramTeam')
-        .find({ program_id: state.programDoc?.data._id });
+        .find({ programId: state.programDoc?.data._id });
       state.teams = teams.map((team: any) => {
         return {
           data: team
         };
       });
     };
-    fetchTeams();
-    const teamChangeStream = props.db.collection('ProgramTeam').watch({
-      filter: {
-        'fullDocument.program_id': state.programDoc?.data._id
-      }
-    });
-    (async () => {
-      // eslint-disable-next-line no-restricted-syntax
-      for await (const change of teamChangeStream) {
-        const changeIndex = state.teams.findIndex(team => {
-          return team.data._id.toString() === change.documentKey._id.toString();
-        });
-        if (change.operationType === 'delete') state.teams.splice(changeIndex, 1);
-        else if (changeIndex !== -1)
-          state.teams.splice(changeIndex, 1, {
-            ...state.teams[changeIndex],
-            data: change.fullDocument
-          });
-        else {
-          state.teams.push({ ...state.teams[changeIndex], data: change.fullDocument });
-        }
-      }
-    })();
+
     const joinTeam = async (_id: ObjectId) => {
       await props.db.collection('ProgramTeam').updateOne(
         { _id },
@@ -222,7 +204,7 @@ export default defineComponent({
     const createTeam = async (name: string, password: string) => {
       const team = {
         owner: props.userDoc?.data._id,
-        program_id: state.programDoc?.data._id,
+        programId: state.programDoc?.data._id,
         name,
         password,
         members: [],
@@ -283,16 +265,43 @@ export default defineComponent({
       state.teamDocument = null;
     };
 
+    onMounted(async () => {
+      await fetchTeams();
+
+      const teamChangeStream = await props.db.collection('ProgramTeam').watch({
+        filter: {
+          'fullDocument.programId': state.programDoc?.data._id
+        }
+      });
+      if (teamChangeStream) {
+        teamChangeStream.forEach((item: any) => {
+          const changeIndex = state.teams.findIndex(
+            team => team.data._id.toString() === item.documentKey._id.toString()
+          );
+          if (item.operationType === 'delete') state.teams.splice(changeIndex, 1);
+          else if (changeIndex !== -1)
+            state.teams.splice(changeIndex, 1, {
+              ...state.teams[changeIndex],
+              data: item.fullDocument
+            });
+          else {
+            state.teams.push({ ...state.teams[changeIndex], data: item.fullDocument });
+          }
+        });
+      }
+    });
+
     return {
-      adkData,
       ...toRefs(state),
+      adkData,
       joinTeam,
       createTeam,
       removeMember,
       changeOwner,
       changePassword,
       renameTeam,
-      leaveTeam
+      leaveTeam,
+      fetchTeams
     };
   }
 });
@@ -307,9 +316,9 @@ export default defineComponent({
   &__team {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
-    // margin-left: 5.4%;
+
     &-buttons {
       margin-bottom: 10px;
       &.v-btn:not(.v-btn--round).v-size--default {
@@ -318,39 +327,16 @@ export default defineComponent({
     }
   }
 
-  &__team-avatar {
-  }
-  &__team-row {
-    flex-direction: row;
-    display: flex;
-    // justify-content: center !important;
-    // align-items: center !important;
-    // align-content: center !important;
-  }
-  &__log-text {
-    display: flex;
-  }
-  &__text-field {
-    &.v-text-field {
-      // width: 400px;
-    }
-  }
   &__log-btn {
-    &.v-btn:not(.v-btn--round).v-size--default {
-      // min-height: 57px;
-    }
     margin-left: 20px;
     height: 100%;
   }
   &__table-view {
     width: 100%;
-    // padding-left: 10px;
-    // padding-right: 10px;
     margin-bottom: 20px;
   }
   &__none {
     border-radius: 5px;
-    // border: 1px solid #dedede;
     height: 100px;
     text-align: center;
     background-color: #dedede;
@@ -362,7 +348,6 @@ export default defineComponent({
 
   &__collapse-divider {
     margin-top: 15px;
-    // margin-bottom: 75px;
     margin-right: none;
     margin-left: none;
     padding-right: none;
@@ -377,13 +362,9 @@ export default defineComponent({
     font-weight: 900;
     letter-spacing: 1px;
     font-size: 13px;
-    //  text-uppercase font-weight-bold text-subtitle-2 text-center
   }
 
   &__container {
-    // width: 100%;
-    // padding: none;
-    // margin: none;
     margin-top: 0px;
     padding: 0px;
   }
@@ -403,14 +384,7 @@ export default defineComponent({
     height: 400px;
     width: 95%;
     border-radius: 25px;
-    // margin: 0px;
     background-color: #dedede;
-
-    // text-align: center;
-    // justify-content: center;
-    // align-items: center;
-    // padding-top: auto;
-    // padding-bottom: auto;
   }
   &__about {
     font-size: 15px;

@@ -1,35 +1,28 @@
-.module-instruct{
+.module-instruct {
   display: flex;
   justify-content: center;
 }
-.module-instruct{
-  &__container{
+.module-instruct {
+  &__container {
     width: 80%;
     position: relative;
     left: 3%;
-    &-grid{
- 
-     // margin-top: 50px;
-     // margin-left: 25px;
-     // margin-right: 25px;
-     // margin-bottom: 25px;
-     display: grid;
-     grid-template-columns: repeat(2, 30%);
-     grid-template-rows: repeat(7, 10%);
-     grid-column-gap: 25px;
-     grid-row-gap: 25px;
-     justify-content: center;
-   }
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 30%);
+      grid-template-rows: repeat(7, 10%);
+      grid-column-gap: 25px;
+      grid-row-gap: 25px;
+      justify-content: center;
+    }
   }
- 
- 
-  &__stepper{
-   box-shadow: none !important;
-   &-step{
-     justify-content: flex-start;
-     align-items: flex-start;
-  
-   }
+
+  &__stepper {
+    box-shadow: none !important;
+    &-step {
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
   }
 }
 
@@ -83,7 +76,8 @@
       &-icon.theme--light.v-icon {
         color: #bdbdbd;
       }
-      &:hover, &:active{
+      &:hover,
+      &:active {
         background-color: green;
       }
     }

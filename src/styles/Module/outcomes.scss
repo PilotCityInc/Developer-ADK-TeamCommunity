@@ -1,11 +1,10 @@
-.module-outcomes{
+.module-outcomes {
   display: flex;
   justify-content: center;
   height: 100%;
 }
-.module-outcomes{
-  &__container{
+.module-outcomes {
+  &__container {
     width: 85%;
-    // max-width: 500px;
   }
 }

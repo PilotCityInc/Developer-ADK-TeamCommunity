@@ -121,10 +121,9 @@ export default defineComponent({
         adks: []
       },
       update: () => {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
           setTimeout(() => {
             resolve(true);
-            // reject(new Error('REJECTED'));
           }, 3000);
         });
       },
@@ -157,10 +156,9 @@ export default defineComponent({
         ]
       },
       update: () => {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
           setTimeout(() => {
             resolve(true);
-            // reject(new Error('REJECTED'));
           }, 3000);
         });
       },
@@ -174,7 +172,7 @@ export default defineComponent({
         adks: []
       },
       update: () => {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
           setTimeout(() => {
             resolve(true);
             // reject(new Error('REJECTED'));
@@ -196,7 +194,7 @@ export default defineComponent({
       programDocStub,
       studentDoc,
       userDoc,
-      teamDoc: null,
+      teamDoc,
       userTypeStub,
       db
     };
